@@ -6,6 +6,7 @@
 // nosso código para uma maneira que os navegadores mais modernos possam entender 
 module.exports = {
   presets: [
-    '@babel/preset-env'
+    '@babel/preset-env',
+    '@babel/preset-react',
   ]
 };
