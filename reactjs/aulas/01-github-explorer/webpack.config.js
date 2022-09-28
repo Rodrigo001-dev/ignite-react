@@ -14,7 +14,7 @@ module.exports = {
   },
   resolve: {
     // estou falando qual o tipo de arquivo ele vai ler
-    extensions: ['.js', 'jsx'],
+    extensions: ['.js', '.jsx'],
   },
   // no module vão ficar as configurações de como a aplicação vai se comportar
   // quando eu estiver importando cada um dos tipos de arquivos
