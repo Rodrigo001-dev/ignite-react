@@ -7,9 +7,9 @@ export function RepositoryList() {
 
       <ul>
         <RepositoryItem repository="unform2" />
-        <RepositoryItem />
-        <RepositoryItem />
-        <RepositoryItem />
+        <RepositoryItem repository="unform2" />
+        <RepositoryItem repository="unform2" />
+        <RepositoryItem repository="unform2" />
       </ul>
     </section>
   );
