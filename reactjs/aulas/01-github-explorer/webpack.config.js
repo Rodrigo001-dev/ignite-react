@@ -5,6 +5,7 @@ const path = require('path');
 // de arquivos importados, básicamente o webpack vai pegar todos esses arquivos
 // e vai converter em arquivos que são entendíveis pelo browser diretemente
 module.exports = {
+  mode: 'development',
   // o entry é para falar qual é o arquivo inicial da aplicação
   entry: path.resolve(__dirname, 'src', 'index.jsx'),
   // o output é para falar qual arquivo que eu vou gerar com o webpack
