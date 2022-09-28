@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -25,12 +26,14 @@ module.exports = {
     // no static eu tenho que falar onde está o arquivo com o conteúdo
     // estático da aplicação
     static: path.resolve(__dirname, 'public'),
+    hot: true,
   },
   plugins: [
+    isDevelopment && new ReactRefreshWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public', 'index.html')
     })
-  ],
+  ].filter(Boolean),
   // no module vão ficar as configurações de como a aplicação vai se comportar
   // quando eu estiver importando cada um dos tipos de arquivos
   module: {
@@ -39,7 +42,14 @@ module.exports = {
         test: /\.jsx$/,
         exclude: /node_modules/,
         // o babel-loader é a integração entre o babel e o webpack
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              isDevelopment && require.resolve('react-refresh/babel')
+            ].filter(Boolean)
+          }
+        },
       },
       {
         test: /\.scss$/,
