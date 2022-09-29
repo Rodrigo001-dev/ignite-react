@@ -1,4 +1,4 @@
-![github-explorer-image]()
+![github-explorer-image](https://github.com/Rodrigo001-dev/ignite/blob/main/reactjs/aulas/01-github-explorer/.github/github-explorer.png)
 
 ## :page_with_curl: Projeto
 
