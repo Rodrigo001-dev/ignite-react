@@ -1,9 +1,13 @@
-import './App.css';
+import styled from 'styled-components';
+
+const Title = styled.h1`
+  color: #8257E6;
+`;
 
 export function App() {
   return (
     <div className="App">
-      <h1 className="title">Hello World</h1>
+      <Title className="title">Hello World</Title>
     </div>
   );
 }
