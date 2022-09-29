@@ -33,6 +33,12 @@ $ yarn
 $ yarn dev
 ```
 
+# :atom_symbol: Desafios
+
+[Desafio 1](https://github.com/Rodrigo001-dev/ignite/tree/main/reactjs/desafios/ignite-challenge-01): desafio relacionado aos conceitos aprendidos na aplicação.
+
+[Desafio 2](https://github.com/Rodrigo001-dev/ignite/tree/main/reactjs/desafios/ignite-challenge-02): desafio voltado para aprender como realizar a separação por componentes no React.
+
 ## 💻 Autor
 
 Feito com 💜 by Rodrigo Rael
