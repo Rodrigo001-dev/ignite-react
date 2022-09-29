@@ -15,12 +15,12 @@
 
 ```bash
 # Clone o Repositório
-$ git@github.com:Rodrigo001-dev/aulas/ignite.git
+$ git@github.com:Rodrigo001-dev/ignite.git
 ```
 
 ```bash
 # Acesse a pasta do projeto
-$ cd reactjs/01-github-explorer
+$ cd reactjs/aulas/01-github-explorer
 ```
 
 ```bash
