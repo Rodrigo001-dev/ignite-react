@@ -12,7 +12,7 @@ module.exports = {
   mode: isDevelopment ? 'development' : 'production',
   devtool: isDevelopment ? 'eval-source-map' : 'source-map',
   // o entry é para falar qual é o arquivo inicial da aplicação
-  entry: path.resolve(__dirname, 'src', 'index.jsx'),
+  entry: path.resolve(__dirname, 'src', 'index.tsx'),
   // o output é para falar qual arquivo que eu vou gerar com o webpack
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -20,7 +20,7 @@ module.exports = {
   },
   resolve: {
     // estou falando qual o tipo de arquivo ele vai ler
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   devServer: {
     // no static eu tenho que falar onde está o arquivo com o conteúdo
@@ -39,7 +39,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.(j|t)sx$/,
         exclude: /node_modules/,
         // o babel-loader é a integração entre o babel e o webpack
         use: {
