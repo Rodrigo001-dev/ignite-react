@@ -15,7 +15,7 @@
 
 ```bash
 # Clone o Repositório
-$ git@github.com:Rodrigo001/ignite.git
+$ git@github.com:Rodrigo001-dev/ignite.git
 ```
 
 ```bash
