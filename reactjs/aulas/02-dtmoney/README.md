@@ -1,4 +1,4 @@
-![gif-example]()
+![gif-example](https://github.com/Rodrigo001-dev/ignite/blob/main/reactjs/aulas/02-dtmoney/.github/dtmoney.gif)
 
 ## :page_with_curl: Projeto
 
