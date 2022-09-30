@@ -5,6 +5,8 @@ import closeImg from '../../assets/close.svg';
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
 
+import { api } from '../../services/api';
+
 import { Container, TrasactionTypeContainer, RadioBox } from './styles';
 
 interface NewTransactionModalProps {
@@ -25,6 +27,15 @@ export function NewTransactionModal({
     // por padrão quando o form realiza o submit ele recarrega a página
     // essa linha é para previnir esse comportamento padrão
     event.preventDefault();
+
+    const data = {
+      title,
+      value,
+      category,
+      type,
+    };
+
+    api.post('/transactions', data);
   };
 
   return (
