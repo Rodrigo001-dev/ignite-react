@@ -19,6 +19,7 @@ Alé disso o styled-components tem algumas funcionalidades principalmente da int
 <a href="https://pt-br.reactjs.org/" target="_blank"> <img src="https://img.shields.io/badge/-ReactJS-61DAFB?style=flat-square&logo=React&logoColor=white" alt="React"> </a>
 <a href="https://www.typescriptlang.org/" target="_blank"> <img src="https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white" alt="TypeScript"> </a>
 <a href="https://styled-components.com/" target="_blank"> <img src="https://img.shields.io/badge/-Styled_Components-db7092?style=flat-square&logo=styled-components&logoColor=white" alt="Styled-components"> </a>
+<a href="https://miragejs.com/" target="_blank"> <img src="https://img.shields.io/badge/-Miragejs-05C77E?style=flat-square&logo=miragejs&logoColor=white" alt="MirageJS"> </a>
 
 # :construction_worker: Executando
 
