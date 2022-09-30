@@ -9,7 +9,7 @@ import { Container } from './styles';
 
 export function Summary() {
   // forma atualizada utilizando hook
-  const transactions = useContext(TransactionsContext);
+  const { transactions } = useContext(TransactionsContext);
 
   return (
     <Container>
