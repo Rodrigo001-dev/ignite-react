@@ -12,6 +12,12 @@ Mas quais as vantagens de utilizar uma biblioteca de css-in-js?
 Algumas das vantagens são que por exemplo o styled-components suporta encadeamento de estilos assim como no sass.
 A grande vantagem que percebemos é que quando utilizamos styled-components diferente de estilizar com css, a nossa estilização fica dentro do escopo apenas do componente que estamos criando, ou seja, essa estilização nunca vai poder ser compartilhada(a menos que a gente queria) com outros componentes, diferente do css que se eu criar uma classe title por exemplo, todo o nosso documento se tiver qualquer coisa com a classe title vai pegar aquela estilização.
 Alé disso o styled-components tem algumas funcionalidades principalmente da integração com o React em si que vão fazer muito sentido.
+
+Também foi falado e colocado em prática sobre contextos no React utilizando a Context API.
+
+Mas para que server o contexto?
+
+De uma forma resumida o contexto serve para ralizar o compartilhamento de estados entre vários componentes da aplicação, independente de onde esses componentes estejam, ou seja, eu consigo acessar uma mesma informação de vários componentes da minha aplicação independente do nível hierárquico que eles estejam na aplicação.
 </LINKEDIN>
 
 ## 🚀 Tecnologias/Bibliotecas utilizadas
