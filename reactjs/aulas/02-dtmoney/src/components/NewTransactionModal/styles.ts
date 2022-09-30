@@ -1,3 +1,4 @@
+import { darken } from 'polished';
 import styled from 'styled-components';
 
 export const Container = styled.form`
@@ -46,6 +47,47 @@ export const Container = styled.form`
     &:hover {
       /* brightness => luminosidade */
       filter: brightness(0.9);
+    }
+  }
+`;
+
+export const TrasactionTypeContainer = styled.div`
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns:  1fr 1fr;
+  gap: 0.5rem;
+
+  button {
+    height: 4rem;
+    border: 1px solid #D7D7D7;
+    border-radius: 0.25rem;
+
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: border-color 0.2s;
+
+    &:hover {
+      /* 
+        o darken vai escurecer uma cor, nesse caso vai escurecer a cor #D7D7D7
+        em 10%(0.1)
+      */
+      border-color: ${darken(0.1, '#D7D7D7')};
+    }
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+
+    span {
+      display: inline-block;
+      margin-left: 1rem;
+      font-size: 1rem;
+      color: var(--text-title);
     }
   }
 `;
