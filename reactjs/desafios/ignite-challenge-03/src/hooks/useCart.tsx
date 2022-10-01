@@ -44,7 +44,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       const updatedCart = [...cart];
       const productExists = updatedCart.find(product => product.id === productId);
 
-      const stock = await api.get(`/stock/${productId}`);
+      const stock = await api.get<Stock>(`/stock/${productId}`);
 
       const stockAmount = stock.data.amount;
       // se o produto existe no carrinho eu vou pegar o amount dele
@@ -65,7 +65,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         productExists.amount = amount;
       } else {
         // se for um produto novo(que não foi adicionado no carrinho)
-        const product = await api.get(`/produts/${productId}`);
+        const product = await api.get<Product>(`/products/${productId}`);
 
         // para acidionar um novo produto no carrinho eu preciso pegar os dados
         // que foram retornados da api e adiconar o campo amount como 1
@@ -115,7 +115,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         return;
       }
 
-      const stock = await api.get(`/stock/${productId}`);
+      const stock = await api.get<Stock>(`/stock/${productId}`);
 
       const stockAmount = stock.data.amount;
 
