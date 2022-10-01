@@ -1,5 +1,6 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
+
 import { api } from '../services/api';
 import { Product, Stock } from '../types';
 
@@ -35,6 +36,25 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     // o storagedCart poder ser null, se ela for null eu vou retornar um [] vazio
     return [];
   });
+
+  const prevCartRef = useRef<Product[]>();
+
+  useEffect(() => {
+    prevCartRef.current = cart;
+  });
+
+  // se o prevCartRef.current se for null ou undefined vai ser atribuido o valor
+  // da direita(cart) mas se o prevCartRef.current não for nem null nem undefined
+  // é ele que vai ser atribuido
+  const cartPreviousValue = prevCartRef.current ?? cart;
+
+  useEffect(() => {
+    // se o valor anterior do carrinho(cartPreviousValue) for diferente do valor
+    // atual do carrinho(cart)
+    if (cartPreviousValue !== cart) {
+      localStorage.setItem('@RocketShoes:cart', JSON.stringify(cart));
+    }
+  }, [cart, cartPreviousValue]);
 
   const addProduct = async (productId: number) => {
     try {
@@ -78,7 +98,6 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       }
 
       setCart(updatedCart);
-      localStorage.setItem('@RocketShoes:cart', JSON.stringify(updatedCart));
     } catch {
       toast.error('Erro na adição do produto');
     }
@@ -95,7 +114,6 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         // a deletar e o segundo é a quantidade de items que eu quero deletar
         updatedCart.splice(productIndex, 1);
         setCart(updatedCart);
-        localStorage.setItem('@RocketShoes:cart', JSON.stringify(updatedCart));
       } else {
         // se ele não encontrar o item no carrinho eu vou forçar um erro para ele
         // cair no catch
@@ -130,7 +148,6 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       if (productExists) {
         productExists.amount = amount;
         setCart(updatedCart);
-        localStorage.setItem('@RocketShoes:cart', JSON.stringify(updatedCart));
       } else {
         throw Error();
       }
