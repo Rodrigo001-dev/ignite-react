@@ -87,9 +87,20 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
   const removeProduct = (productId: number) => {
     try {
       const updatedCart = [...cart];
-      const productExists = updatedCart.find(product => product.id === productId);
+      const productIndex = updatedCart.findIndex(product => product.id === productId);
 
-      
+      // se ele encontrou o produto
+      if (productIndex >= 0) {
+        // o splice precisa de 2 parâmetros, o primeiro é onde eu quero começar
+        // a deletar e o segundo é a quantidade de items que eu quero deletar
+        updatedCart.splice(productIndex, 1);
+        setCart(updatedCart);
+        localStorage.setItem('@RocketShoes:cart', JSON.stringify(updatedCart));
+      } else {
+        // se ele não encontrar o item no carrinho eu vou forçar um erro para ele
+        // cair no catch
+        throw Error();
+      }
     } catch {
       toast.error('Erro na remoção do produto');
     }
@@ -100,9 +111,9 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     amount,
   }: UpdateProductAmount) => {
     try {
-      // TODO
+      
     } catch {
-      // TODO
+      toast.error('Erro na alteração de quantidade do produto');
     }
   };
 
