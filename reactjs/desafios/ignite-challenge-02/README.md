@@ -30,7 +30,7 @@ $ yarn
 
 ```bash
 # Execute
-$ yarn dev
+$ yarn start
 ```
 
 ## 💻 Autor
