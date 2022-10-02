@@ -35,6 +35,8 @@ $ yarn dev
 
 # :atom_symbol: Desafios
 
+[Desafio 1](https://github.com/Rodrigo001-dev/ignite/tree/main/reactjs/desafios/ignite-challenge-03): desafio relacionado aos conceitos aprendidos na aplicação.
+
 ## 💻 Autor
 
 Feito com 💜 by Rodrigo Rael
