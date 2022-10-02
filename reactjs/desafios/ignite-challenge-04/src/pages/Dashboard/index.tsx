@@ -3,20 +3,11 @@ import { useEffect, useState } from 'react';
 import api from '../../services/api';
 
 import Header from '../../components/Header';
-import Food from '../../components/Food';
+import Food, { FoodData } from '../../components/Food';
 import ModalAddFood from '../../components/ModalAddFood';
 import ModalEditFood from '../../components/ModalEditFood';
 
 import { FoodsContainer } from './styles';
-
-interface FoodData {
-  id: number;
-  name: string;
-  description: string;
-  price: string;
-  available: boolean;
-  image: string;
-};
 
 function Dashboard() {
   const [foods, setFoods] = useState<FoodData[]>([]);
