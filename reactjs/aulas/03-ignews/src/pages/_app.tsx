@@ -1,5 +1,7 @@
 import { AppProps } from 'next/app';
 
+import { Header } from '../components/Header';
+
 import '../styles/global.scss';
 
 // o _app.tsx é um componente sempre vai ficar por volta de todas as páginas, ou
@@ -14,7 +16,12 @@ import '../styles/global.scss';
 // toda vez que o usuário trocar de tela
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <Header />
+      <Component {...pageProps} />
+    </>
+  )
 }
 
 export default MyApp
