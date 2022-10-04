@@ -5,6 +5,8 @@ import Head from 'next/head';
 // _document, assim é possível configurar algumas coisas do cabeçalho da
 // aplicação por página
 
+import { SubscribeButton } from '../components/SubscribeButton';
+
 import styles from './home.module.scss';
 
 export default function Home() {
@@ -22,6 +24,7 @@ export default function Home() {
             Get access to all the publications <br />
             <span>for $9.90 month</span>
           </p>
+          <SubscribeButton />
         </section>
 
         <img src="/images/avatar.svg" alt="Girl coding" />
