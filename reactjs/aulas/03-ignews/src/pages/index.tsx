@@ -1,7 +1,17 @@
-import styles from '../styles/home.module.scss';
+import Head from 'next/head';
+
+// o Head é um componente React que eu posso colocar em qualquer lugar da minha 
+// tela e tudo que eu colocar dentro do Head vai ser anexado ao head do meu
+// _document, assim é possível configurar algumas coisas do cabeçalho da
+// aplicação por página
 
 export default function Home() {
   return (
-    <h1 className={styles.title}>Hello World</h1>
+    <>
+      <Head>
+        <title>Início | ig.news</title>
+      </Head>
+      <h1>Hello World</h1>
+    </>
   )
 }

@@ -1,5 +1,7 @@
 import { AppProps } from 'next/app';
 
+import '../styles/global.scss';
+
 // o _app.tsx é um componente sempre vai ficar por volta de todas as páginas, ou
 // seja, quando estmaos acessando uma página no Next.js na verdade o que estamos
 // acessando é esse componente(MyApp) e esse componente vai mostrar a página
