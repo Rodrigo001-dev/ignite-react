@@ -1,4 +1,6 @@
 import { AppProps } from 'next/app';
+import { Session } from 'next-auth';
+import { SessionProvider as NextAuthProvider } from 'next-auth/react';
 
 import { Header } from '../components/Header';
 
@@ -15,12 +17,16 @@ import '../styles/global.scss';
 // tiver aqui dentro de chamada HTTP, um estado, tudo vai ser recriado do zero,
 // toda vez que o usuário trocar de tela
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps}: AppProps<{session: Session}>) {
   return (
-    <>
+    // o nextAuth utiliza de contextos dentro do React para servir a informação
+    // para os componentes se o usuário está autenticado ou não
+    // o NextAuthProvider é o contexto responsável por passar a informação de se
+    // o usuário está autenticado ou não
+    <NextAuthProvider>
       <Header />
       <Component {...pageProps} />
-    </>
+    </NextAuthProvider>
   )
 }
 

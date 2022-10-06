@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 
 import Head from 'next/head';
 
@@ -60,7 +60,37 @@ export default function Home({ product }: HomeProps) {
 // utilizando o SSR(Server Side Rendering) para fazer chamada a API, quando o
 // Next devolver a interface pronta pro browser ela já venha com as informações
 // que foram buscadas da API
-export const getServerSideProps: GetServerSideProps = async () => {
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   // todo o código que eu colocar dentro dessa função, vai ser executado no
+//   // servidor node que o Next executa junto com a nossa aplicação React
+
+//   // o retrieve é para buscar somente 1 preço
+//   const price = await stripe.prices.retrieve('price_1LpI2TBXG0NwZs9IJqRdjoh9', {
+//     // o expand: ['product'] é para no retorno vir todas as informações do
+//     // produto
+//     expand: ['product']
+//   });
+
+//   const product = {
+//     priceId: price.id,
+//     // o amount é o preço, o price.unit_amount é para pegar o preço em valor
+//     // inteiro e ele sempre vem centavos, por isso eu dividi por 100
+//     amount: new Intl.NumberFormat('en-US', {
+//       style: 'currency',
+//       currency: 'USD',
+//     }).format(price.unit_amount / 100),
+//   };
+
+//   return {
+//     // tudo o que eu repassar como uma propriedade(props), eu consigo acessar
+//     // o essas essas informações através das props do componente
+//     props: {
+//       product,
+//     }
+//   }
+// };
+
+export const getStaticProps: GetStaticProps = async () => {
   // todo o código que eu colocar dentro dessa função, vai ser executado no
   // servidor node que o Next executa junto com a nossa aplicação React
 
@@ -86,6 +116,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
     // o essas essas informações através das props do componente
     props: {
       product,
-    }
+    },
+    // o revalidate é em quanto tempo em segundos eu quero que essa página se
+    // mantenha sem precisar ser revalidada(reconstruida)
+    revalidate: 60 * 60 * 24, // 24 hours
   }
 };
