@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps}: AppProps<{session: Session}>) {
     // para os componentes se o usuário está autenticado ou não
     // o NextAuthProvider é o contexto responsável por passar a informação de se
     // o usuário está autenticado ou não
-    <NextAuthProvider>
+    <NextAuthProvider session={pageProps.session}>
       <Header />
       <Component {...pageProps} />
     </NextAuthProvider>

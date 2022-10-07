@@ -9,8 +9,6 @@ export function SignInButton() {
   // seção ativa ou não, ou seja, se ele tá logado ou não
   const { data: session } = useSession();
 
-  console.log(session);
-
   // se o usuário tem uma seção eu mostro o button com as informações dele
   return session ? (
     <button 

@@ -27,6 +27,7 @@ Ex:
 
 <a href="https://www.typescriptlang.org/" target="_blank"> <img src="https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white" alt="TypeScript"> </a>
 <a href="https://nextjs.org/" target="_blank"> <img src="https://img.shields.io/badge/Next-black?style=flat-square&logo=next.js&logoColor=white" alt="Next"> </a>
+<a href="https://fauna.com/" target="_blank"> <img src="https://img.shields.io/badge/-FaunaDB-604BE9?style=flat-square&logo=fauna&logoColor=white" alt="FaunaDB"> </a>
 <a href="https://sass-lang.com/guide" target="_blank"> <img src="https://img.shields.io/badge/-Scss-pink?style=flat-square&logo=sass&logoColor=white" alt="SCSS"> </a>
 
 # :construction_worker: Executando
