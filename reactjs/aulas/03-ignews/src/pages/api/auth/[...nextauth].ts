@@ -49,8 +49,12 @@
 // acontecer é que tudo que eu mandar depois de auth(pasta que é uma rota) vai
 // ser repassado para uma variável chamada nextauth
 
-import NextAuth from 'next-auth';
+import NextAuth, { Account, Profile, User } from 'next-auth';
 import GithubProvider from "next-auth/providers/github";
+
+import { query as q } from 'faunadb';
+
+import { fauna } from '../../../services/fauna';
 
 export const authOptions = ({
   providers: [
@@ -68,6 +72,89 @@ export const authOptions = ({
       },
     }),
   ],
+  // callbacks são funções que são executadas de forma automática do NextAuth
+  // assim que acontece alguma ação 
+  callbacks: {
+    // sempre que o usuário faz login na aplicação vai ser executada essa função
+    // sigIn
+    async signIn(params: { user: User, account: Account, profile: Profile }) {
+      const { email } = params.user;
+
+      try {
+        // nós não podemos buscar informações do banco de dados no Fauna sem um 
+        // índice(index)
+        // lá no Fauna eu criei um índice(index) para encontrar um usuário por
+        // email(user_by_email), ou seja, se eu quiser encontrar um usuário 
+        // por nome, eu teria quer criar um index lá no fauna para encontrar 
+        // um usuário por nome
+
+        // nós não podemos buscar informações do banco de dados no Fauna sem um
+        // índice porque imagine que dentro do banco de dados temos milhares 
+        // usuários com id, nome e email, agora imagine que realizamos uma query
+        // para buscar um usuário com um email específico, o banco de dados 
+        // teria que percorrer cada um dos registros até ele encontrar um que
+        // bata com o email específico que eu quero e aí retornar aquele
+        // registro, ou seja, se o registro for o 11826, o banco de dados teria
+        // que percorrer todos até o 11826 para encontrar esse registro, alguns
+        // bancos de dados são previamente otimizados e criam índices internos
+        // para eles conseguirem se localizar melhor nisso, mas na grande maioria
+        // das vezes não são índices extremamente performáticos, o que nós
+        // geralmente fazemos nos banco de dados é criar índice
+        // cada vez que criamos um índice por exemplo user_by_email(índice dos
+        // usuários pelo campo email) o que o banco de dados vai fazer é
+        // vai criar uma outra estrutura de dados onde a chave é o índice(a
+        // coluna email nesse caso) e o valor é a referência ou uma cópia dos
+        // dados que existem dentro da tabela de usuários, ou seja, quando eu for
+        // buscar por usuário que bate com o email que eu quero para o banco de
+        // dados é muito facíl ir na estrutura onde a chave é o índice para
+        // procurar pela chave(no caso o email), com isso eu não preciso que ele
+        // percorra todos os usuários para achar o que eu quero, com o índice é
+        // muito mais rápido
+        await fauna.query(
+          // se
+          q.If(
+            // não
+            q.Not(
+              // existe
+              q.Exists(
+                // Match = Where
+                q.Match(
+                  // um usuário
+                  q.Index('user_by_email'),
+                  // que bate com esse email
+                  q.Casefold(params.user.email)
+                )
+              )
+            ),
+            // eu quero que crie
+            q.Create(
+              // na Collection de users
+              q.Collection('users'),
+              // um usuário com esse email
+              { data: { email } }
+            ),
+            // se não, se ele existir
+            // vai buscar
+            q.Get( //Select
+              q.Match(
+                // um usuário
+                q.Index('user_by_email'),
+                // que bate com esse índice(email) aqui
+                q.Casefold(params.user.email)
+              )
+            )
+          )
+        );
+
+        // return true significa que o login deu certo 
+        return true;
+      } catch {
+        // isso vai evitar que o usuário consiga fazer login na aplicação se ela
+        // não conseguiu fazer a integração com o banco de dados
+        return false;
+      }
+    }
+  }
 });
 
 export default NextAuth(authOptions);
