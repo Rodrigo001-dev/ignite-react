@@ -1,5 +1,7 @@
 import { useSession, signIn } from 'next-auth/react';
 
+import { api } from '../../services/api';
+
 import styles from './styles.module.scss';
 
 interface SubscribeButtonProps {
@@ -16,7 +18,7 @@ interface SubscribeButtonProps {
 export function SubscribeButton({ priceId }: SubscribeButtonProps) {
   const { data: session } = useSession();
   
-  function handleSubscribe() {
+  async function handleSubscribe() {
     // se não existir uma sessão do usuário, se o usuário não estiver logado
     if (!session) {
       // eu vou redirecionar ele para a autenticação com o github
@@ -26,7 +28,13 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
     }
 
     // se o usuário está com uma sessão ativa, se ele está logado
-    // eu vou fazer a criação da checkout session
+    try {
+      const response = await api.post('/subscribe');
+
+      const { sessionId } = response.data;
+    } catch (error) {
+      
+    }
   };
   
   return (

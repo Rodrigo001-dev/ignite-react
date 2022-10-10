@@ -1,3 +1,5 @@
+// essa biblioteca do stripe é para ser utilizada no backend com as variaveis de
+// ambiente secretas, a chave do stripe
 import Stripe from 'stripe';
 
 import { version } from '../../package.json';
