@@ -2,6 +2,8 @@ import { AppProps } from 'next/app';
 import { Session } from 'next-auth';
 import { SessionProvider as NextAuthProvider } from 'next-auth/react';
 
+import { ToastContainer } from 'react-toastify';
+
 import { Header } from '../components/Header';
 
 import '../styles/global.scss';
@@ -26,6 +28,7 @@ function MyApp({ Component, pageProps}: AppProps<{session: Session}>) {
     <NextAuthProvider session={pageProps.session}>
       <Header />
       <Component {...pageProps} />
+      <ToastContainer autoClose={3000} />
     </NextAuthProvider>
   )
 }

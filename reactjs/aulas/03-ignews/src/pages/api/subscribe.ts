@@ -1,8 +1,19 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from 'next-auth/react';
+import { query as q } from 'faunadb';
 
+import { fauna } from "../../services/fauna";
 import { stripe } from "../../services/stripe";
+
+type User = {
+  ref: {
+    id: string;
+  };
+  data: {
+    stripe_customer_id: string;
+  };
+};
 
 export default async (request: NextApiRequest, response: NextApiResponse) => {
   // estou verificando se o método da requisição é POST pois eu só quero aceitar
@@ -15,17 +26,50 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     // consigo acessar tanto do front quanto do back
     const session = await getSession({ req: request });
 
-    // cadastrando o usuário dentro do stripe
-    const stripeCustomer = await stripe.customers.create({
-      // o email é uma informação obrigatória
-      email: session.user.email,
-    });
+    // pegando as informações do usuário no Fauna
+    const user = await fauna.query<User>(
+      q.Get(
+        q.Match(
+          q.Index('user_by_email'),
+          q.Casefold(session.user.email)
+        )
+      )
+    );
+
+    // pegando o valor do stripe_customer_id dentro do Fauna
+    let customerId = user.data.stripe_customer_id
+
+    // se o customerId não existir, ou seja, se o usuário que está salvo no 
+    // banco de dados ainda não tem um stripe_customer_id
+    if (!customerId) {
+      // eu vou cadastrar o usuário dentro do stripe
+      const stripeCustomer = await stripe.customers.create({
+        // o email é uma informação obrigatória
+        email: session.user.email,
+      });
+
+      // atualizando as informações de 1 usuário colocando o id do customer que
+      // foi criado dentro do stripe
+      await fauna.query(
+        q.Update(
+          q.Ref(q.Collection('users'), user.ref.id),
+          {
+            data: {
+              stripe_customer_id: stripeCustomer.id,
+            }
+          }
+        )
+      );
+
+      // reatribuindo o valor do stripe_customer_id para a variável
+      customerId = stripeCustomer.id;
+    }
 
     const stripeCheckoutSession = await stripe.checkout.sessions.create({
       // eu preciso passar algumas informações para criar o checkout
       // o customer é quem está comprando esse pacote(plano, produto, etc)
       // stripeCustomer.id é id do customer no stripe e não no Fauna
-      customer: stripeCustomer.id,
+      customer: customerId,
       // a primeira informação é quais métodos de pagamento eu quero aceitar
       payment_method_types: ['card'],
       // o billing_address_collection fala se eu quero obrigar o usuário a
