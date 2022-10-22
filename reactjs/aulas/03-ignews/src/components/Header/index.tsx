@@ -1,8 +1,7 @@
 // quando utilizamos Next todas as imagens ficam dentro da pasta public
 
-import Link from 'next/link';
-
 import { SignInButton } from '../SignInButton';
+import { ActiveLink } from '../ActiveLink';
 
 import styles from './styles.module.scss';
 
@@ -12,26 +11,20 @@ export function Header() {
       <div className={styles.hedaerContent}>
         <img src="/images/logo.svg" alt="ig.news" />
         <nav>
-          {
-            /*
-              utilizando a tag Link do Next fazemos o uso do conceito de SPA do
-              React(basicamente estou reaproveitando o core da aplicação, a 
-              estrutura da aplicação, mudando só o conteúdo)
-            */
-          }
-          <Link href="/">
-            <a className={styles.active} href="">Home</a>
-          </Link>
-
+          <ActiveLink activeClassName={styles.active} href="/">
+            <a>Home</a>
+          </ActiveLink>
           {
             /* 
               o prefetch vai fazer com que o Next por baixo dos panos deixe a
               página de posts pré-carregada
             */
           }
-          <Link href="/posts" prefetch>
+          <ActiveLink activeClassName={styles.active} href="/posts" prefetch>
+            {/* se o asPath for igual a /posts eu coloco a classe active */}
+            {/* <a className={asPath === '/posts' ? styles.active : ''}>Posts</a> */}
             <a>Posts</a>
-          </Link>
+          </ActiveLink>
         </nav>
 
         <SignInButton />
