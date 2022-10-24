@@ -1,4 +1,4 @@
-![gif-ignews]()
+![gif-ignews](https://github.com/Rodrigo001-dev/ignite/blob/main/reactjs/aulas/03-ignews/.github/ignews.gif)
 
 ## :page_with_curl: Projeto
 
