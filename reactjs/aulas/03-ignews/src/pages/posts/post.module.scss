@@ -37,5 +37,35 @@
         margin: 0.5rem 0;
       }
     }
+
+
+    // se essa div do postContent ela for tambem uma previewContent
+    &.previewContent {
+      background: linear-gradient(var(--gray-100), transparent);
+      // background-clip vai fazer com que o background que foi aplicado se
+      // comporte como o background do texto
+      background-clip: text;
+      // esse webkit é recomendado quando aplicamos o linear-gradient no texto
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
+
+.continueReading {
+  padding: 2rem;
+  text-align: center;
+  background: var(--gray-850);
+  border-radius: 100px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 4rem 0 2rem;
+
+  a {
+    color: var(--yellow-500);
+    margin-left: 0.5rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

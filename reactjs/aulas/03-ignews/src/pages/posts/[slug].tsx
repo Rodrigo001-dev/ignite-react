@@ -65,9 +65,20 @@ export const getServerSideProps: GetServerSideProps = async ({ req, params }) =>
   // pegando o slug do post que vem na rota
   const { slug } = params;
 
-  // if (!session) {
+  console.log(session);
 
-  // }
+  // se o usuário não tiver uma assinatura ativa
+  if (!session?.activeSubscription) {
+    return {
+      // eu vou redirecionar o usuário
+      redirect: {
+        // para a Home
+        destination: '/',
+        // estou dizendo que não é permanente o redirecionamento
+        permanent: false,
+      }
+    }
+  }
 
   const prismic = getPrismicClient(req);
 

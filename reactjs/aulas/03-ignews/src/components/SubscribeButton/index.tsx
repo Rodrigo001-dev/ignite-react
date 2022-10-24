@@ -1,4 +1,5 @@
 import { useSession, signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -21,6 +22,7 @@ interface SubscribeButtonProps {
 
 export function SubscribeButton({ priceId }: SubscribeButtonProps) {
   const { data: session } = useSession();
+  const router = useRouter();
 
   async function handleSubscribe() {
     // se não existir uma sessão do usuário, se o usuário não estiver logado
@@ -32,6 +34,13 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
         theme: "dark"
       });
       // dando o return para o código parar de ser executado por aqui
+      return;
+    }
+
+    // se o usuário já tem uma inscrição ativa
+    if (session.activeSubscription) {
+      // eu vou rediredionar ele para a pagina de posts
+      router.push('/posts');
       return;
     }
 

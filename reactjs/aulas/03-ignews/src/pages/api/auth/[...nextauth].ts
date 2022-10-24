@@ -75,6 +75,52 @@ export const authOptions = ({
   // callbacks são funções que são executadas de forma automática do NextAuth
   // assim que acontece alguma ação 
   callbacks: {
+    // o session vai nos permitir modificar os dados que estão dentro do session
+    async session({ session }) {
+      try {
+        // vai buscar se o usuário tem uma inscrição ativa ou não
+        const userActiveSubscription = await fauna.query(
+          q.Get(
+            // união é quando eu quero buscar ou um Match ou o outro
+            // intersecção(intersection) é quando eu quero buscar os dois Match
+            // Difereça é quando eu quero buscar apenas os itens de um Match
+            q.Intersection([
+              // nesse Match eu estou buscando os dados do usuário pela ref dele 
+              // na collection de subscriptions onde o email bata com o email
+              q.Match(
+                q.Index('subscription_by_user_ref'),
+                q.Select(
+                  "ref",
+                  q.Get(
+                    q.Match(
+                      q.Index('user_by_email'),
+                      q.Casefold(session.user.email)
+                    )
+                  )
+                )
+              ),
+              // nesse Match eu estou dizendo que só vou pegar os dados desse
+              // usuário se o status for active(tudo isso graças ao Intersection)
+              q.Match(
+                q.Index('subscription_by_status'),
+                "active"
+              )
+            ])
+          )
+        );
+
+        // e no final é retornado o session com os dados modificados
+        return {
+          ...session,
+          activeSubscription: userActiveSubscription
+        }
+      } catch {
+        return {
+          ...session,
+          activeSubscription: null,
+        }
+      }
+    },
     // sempre que o usuário faz login na aplicação vai ser executada essa função
     // sigIn
     async signIn(params: { user: User, account: Account, profile: Profile }) {
