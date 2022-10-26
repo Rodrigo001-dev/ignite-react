@@ -1,10 +1,11 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+import commonStyles from '../../styles/common.module.scss';
+import styles from './header.module.scss';
+
 export function Header() {
   return (
-    <header>
-      <div>
-        <h1>ola</h1>
+    <header className={commonStyles.container}>
+      <div className={styles.hedaerContent}>
+        <img src="/images/logo.svg" alt="Logo SpaceTraveling" />
       </div>
     </header>
   );
