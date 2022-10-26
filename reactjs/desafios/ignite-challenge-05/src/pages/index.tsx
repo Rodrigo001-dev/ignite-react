@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import Head from 'next/head';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 
@@ -27,6 +29,26 @@ interface HomeProps {
 }
 
 export default function Home({ postsPagination }: HomeProps) {
+  const [pagination, setPagination] = useState(postsPagination);
+
+  function loadMorePosts() {
+    fetch(pagination.next_page, {}).then((response) => {
+      return response.json();
+    }).then((result) => {
+      const newPagination: PostPagination = {
+        next_page: result.next_page,
+        results: [
+          ...pagination.results,
+          ...result.results,
+        ],
+      };
+      setPagination(newPagination);
+    })
+    .catch((error) => {
+      return console.log(error.message);
+    })
+  };
+
   return (
     <>
       <Head>
@@ -35,64 +57,35 @@ export default function Home({ postsPagination }: HomeProps) {
 
       <main className={commonStyles.container}>
         <div className={styles.posts}>
-          <a>
-            <strong>Titulo do post</strong>
-            <p>Subtitulo do post asdfeasdfeawfdsafeasdfeafdsfeadfaefasdfe</p>
-            <div>
-              <span>
-                <FiCalendar size="1.5rem" />
-                <time>15 Jan 2022</time>
-              </span>
+          {pagination.results.map((post) => {
+            return (
+              <Link key={post.uid} href={`/post/${post.uid}`}>
+                <a>
+                  <strong>{post.data.title}</strong>
+                  <p>{post.data.subtitle}</p>
+                  <div>
+                    <span>
+                      <FiCalendar size="1.5rem" />
+                      <time>{post.first_publication_date}</time>
+                    </span>
 
-              <span>
-                <FiUser size="1.5rem" />
-                Author do post
-              </span>
-            </div>
-          </a>
-
-          <a>
-            <strong>Titulo do post</strong>
-            <p>Subtitulo do post asdfeasdfeawfdsafeasdfeafdsfeadfaefasdfe</p>
-            <div>
-              <span>
-                <FiCalendar size="1.5rem" />
-                <time>15 Jan 2022</time>
-              </span>
-
-              <span>
-                <FiUser size="1.5rem" />
-                Author do post
-              </span>
-            </div>
-          </a>
-
-          <a>
-            <strong>Titulo do post</strong>
-            <p>Subtitulo do post asdfeasdfeawfdsafeasdfeafdsfeadfaefasdfe</p>
-            <div>
-              <span>
-                <FiCalendar size="1.5rem" />
-                <time>15 Jan 2022</time>
-              </span>
-
-              <span>
-                <FiUser size="1.5rem" />
-                Author do post
-              </span>
-            </div>
-          </a>
+                    <span>
+                      <FiUser size="1.5rem" />
+                      {post.data.author}
+                    </span>
+                  </div>
+                </a>
+              </Link>
+            )
+          })}
         </div>
 
         <div className={styles.containerButton}>
-          {/* {
-            postsPagination.next_page !== null
-            &&
-            <button>
+          {pagination.next_page && (
+            <button onClick={() => loadMorePosts()}>
               Carregar mais posts
             </button>
-          } */}
-          <button>Carregar mais posts</button>
+          )}
         </div>
       </main>
     </>
@@ -101,9 +94,14 @@ export default function Home({ postsPagination }: HomeProps) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient({});
-  // const postsResponse = await prismic.getByType();
+  const postsResponse = await prismic.getByType('posts', {
+    pageSize: 5,
+  });
 
   return {
-    props: {}
+    props: {
+      postsPagination: postsResponse
+    },
+    revalidate: 60 * 30 // 30 minutes
   }
 };
