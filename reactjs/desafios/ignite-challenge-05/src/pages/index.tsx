@@ -3,6 +3,8 @@ import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import Head from 'next/head';
 import { FiCalendar, FiUser } from 'react-icons/fi';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 import { getPrismicClient } from '../services/prismic';
 
@@ -66,7 +68,13 @@ export default function Home({ postsPagination }: HomeProps) {
                   <div>
                     <span>
                       <FiCalendar size="1.5rem" />
-                      <time>{post.first_publication_date}</time>
+                      <time>
+                        {format(
+                          new Date(post.first_publication_date),
+                          'PP',
+                          { locale: ptBR }
+                        )}
+                      </time>
                     </span>
 
                     <span>
