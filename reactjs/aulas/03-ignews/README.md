@@ -38,6 +38,7 @@ $ yarn dev
 
 # :atom_symbol: Desafios
 
+[Desafio](https://github.com/Rodrigo001-dev/ignite/tree/main/reactjs/desafios/ignite-challenge-05): o desafio tem por objetivo criar um blog do total zero utiizando Next e o Prismic
 
 ## 💻 Autor
 
