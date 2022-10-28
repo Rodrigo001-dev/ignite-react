@@ -65,7 +65,11 @@ export default function Post({ post }: PostProps) {
         <title>{post.data.title} | SpaceTraveling</title>
       </Head>
 
-      <img src={post.data.banner.url} alt={post.data.banner.alt} />
+      <img
+        src={post.data.banner.url}
+        alt={post.data.banner.alt}
+        className={styles.banner}
+      />
       <main className={commonStyles.container}>
         <article className={styles.post}>
           <h1>{post.data.title}</h1>
@@ -104,6 +108,7 @@ export default function Post({ post }: PostProps) {
               </section>
             );
           })}
+          <div />
         </article>
       </main>
     </>

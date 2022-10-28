@@ -1,1 +1,50 @@
-// TODO
+.banner {
+  width: 98.7vw;
+  height: 25rem;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+}
+
+.post {
+  width: 45.063rem;
+  height: 131.75rem;
+
+  h1 {
+    font-size: 3rem;
+    line-height: 3.625rem;
+    margin-bottom: 1.5rem;
+  }
+
+  div {
+    width: 28.375rem;
+    height: 1.25rem;
+
+    span {
+      width: 8.125rem;
+      margin-right: 1.5rem;
+
+      svg {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  section {
+    width: 43.75rem;
+    margin-top: 5rem;
+
+    h2 {
+      font-size: 2.25rem;
+      margin-bottom: 4rem;
+
+      color: var(--heading);
+    }
+
+    p {
+      font-size: 1.125rem;
+      line-height: 1.576rem;
+
+      color: var(--body);
+    }
+  }
+}

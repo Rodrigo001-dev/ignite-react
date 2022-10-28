@@ -26,14 +26,13 @@
     }
 
     div {
-      width: 16.438rem;
+      width: 20rem;
       margin-top: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
       position: absolute;
 
       span {
+        margin-right: 1.5rem;
+
         font-size: 0.875rem;
         line-height: 1.063rem;
         color: var(--info);
