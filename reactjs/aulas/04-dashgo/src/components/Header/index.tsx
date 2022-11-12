@@ -1,11 +1,15 @@
-import { Flex, useBreakpointValue } from '@chakra-ui/react';
+import { Flex, Icon, IconButton, useBreakpointValue } from '@chakra-ui/react';
+import { RiMenuLine } from 'react-icons/ri';
 
 import { Profile } from './Profile';
 import { NotificationsNav } from './NotificationsNav';
 import { SearchBox } from './SearchBox';
 import { Logo } from './Logo';
 
+import { useSidebarDrawer } from '../../contexts/SidebarDrawerContext';
+
 export function Header() {
+  const { onOpen } = useSidebarDrawer();
   // o useBreakpointValue é um hook do Chakra para trabalhar com responsividade
   // isWideVersion = se estamos na versão larga da tela
   const isWideVersion = useBreakpointValue({
@@ -26,6 +30,26 @@ export function Header() {
       px="6"
       align="center"
     >
+      {
+        /* 
+          se a tela não estiver na versão Wide(!isWideVersion), ou seja se o
+          isWideVersion for false vai aparecer um IconButton para abriar 
+          sidebar
+        */
+      }
+      { !isWideVersion && (
+        <IconButton
+          aria-label="Open navigation"
+          icon={<Icon as={RiMenuLine} />}
+          fontSize="24"
+          variant="unstyled"
+          onClick={onOpen}
+          mr="2"
+        >
+
+        </IconButton>
+      ) }
+
       <Logo />
       
       {/* se a tela estiver na versão larga dela(lg) então eu mostro o SearchBox */}
