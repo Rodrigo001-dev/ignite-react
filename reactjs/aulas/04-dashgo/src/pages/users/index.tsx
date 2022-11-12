@@ -14,6 +14,7 @@ import {
   Tr, 
   useBreakpointValue
 } from "@chakra-ui/react";
+import Link from "next/link";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 
 import { Header } from "../../components/Header";
@@ -38,15 +39,23 @@ export default function UserList() {
           <Flex mb="8" justify="space-between" align="center">
             <Heading size="lg" fontWeight="normal">Usuários</Heading>
 
-            <Button 
-              as="a" 
-              size="sm" 
-              fontSize="sm" 
-              colorScheme="pink"
-              leftIcon={<Icon as={RiAddLine} fontSize="20" />}
-            >
-              Criar novo usuário
-            </Button>
+            {
+              /*
+               eu passei o passHref porque por mais que esse Button seja uma tag
+               a do HTML, eu não estou passando a tag a em si e sim um Button
+              */
+            }
+            <Link href="/users/create" passHref>
+              <Button 
+                as="a" 
+                size="sm" 
+                fontSize="sm" 
+                colorScheme="pink"
+                leftIcon={<Icon as={RiAddLine} fontSize="20" />}
+              >
+                Criar novo usuário
+              </Button>
+            </Link>
           </Flex>
 
           <Table colorScheme="whiteAlpha">
