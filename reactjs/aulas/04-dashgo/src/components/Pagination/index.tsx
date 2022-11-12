@@ -5,7 +5,9 @@ import { PaginationItem } from "./PaginationItem";
 export function Pagination() {
   return (
     <Stack
-      direction="row"
+      // eu quero que quando estiver no mobile o direction seja column e a partir
+      // disso, ou seja, qualquer tamanho maior que o mobile seja row
+      direction={["column", "row"]}
       spacing="6"
       mt="8"
       justify="space-between"
