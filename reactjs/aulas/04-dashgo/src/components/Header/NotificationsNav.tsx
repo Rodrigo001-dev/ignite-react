@@ -4,10 +4,12 @@ import { RiNotificationLine, RiUserAddLine } from "react-icons/ri";
 export function NotificationsNav() {
   return (
     /* HStack = HorizontalStack / VStack = VerticalStack */
-    <HStack 
-      spacing="8"
-      mx="8"
-      pr="8"
+    <HStack
+      // aqui eu estou dizendo que quando o usuário estiver no mobile o spacing
+      // vai ser de 6 e para todas as outras telas vai ser 8
+      spacing={["6", "8"]}
+      mx={["6", "8"]}
+      pr={["6", "8"]}
       py="1"
       color="gray.300"
       borderRightWidth={1}
