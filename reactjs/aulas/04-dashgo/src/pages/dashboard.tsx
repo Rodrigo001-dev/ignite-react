@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Box, Flex, SimpleGrid, Text, theme } from "@chakra-ui/react";
 import { ApexOptions } from 'apexcharts';
@@ -66,6 +67,12 @@ const series = [
 ];
 
 export default function Dashboard() {
+  const [showChart, setShowChart] = useState(false);
+
+  setTimeout(() => {
+    setShowChart(true);
+  }, 1);
+
   return (
     <Flex direction="column" h="100vh">
       <Header />
@@ -102,7 +109,9 @@ export default function Dashboard() {
             pb="4"
           >
             <Text fontSize="lg" mb="4">Inscritos da semana</Text>
-            <Charts options={options} series={series} type="area" height={160} />
+            { showChart && (
+              <Charts options={options} series={series} type="area" height={160} />
+            )}
           </Box>
 
           <Box
@@ -112,7 +121,9 @@ export default function Dashboard() {
             pb="4"
           >
             <Text fontSize="lg" mb="4">Taxa de abertura</Text>
-            <Charts options={options} series={series} type="area" height={160} />
+            { showChart && (
+              <Charts options={options} series={series} type="area" height={160} />
+            )}
           </Box>
         </SimpleGrid>
       </Flex>
