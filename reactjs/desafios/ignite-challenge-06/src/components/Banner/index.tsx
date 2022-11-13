@@ -1,13 +1,23 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, useBreakpointValue } from "@chakra-ui/react";
 import { Airplane } from "./Airplane";
 
 import { Texts } from "./Texts";
 
 export function Banner() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
+
   return (
-    <Flex bgImage="url('/images/bg-banner.png')" w="100%">
+    <Flex 
+      bgImage="url('/images/bg-banner.png')"
+      backgroundRepeat="no-repeat"
+      w="100%"
+      align="center"
+    >
       <Texts />
-      <Airplane />
+      { isWideVersion && <Airplane /> }
     </Flex>    
   );
 };
