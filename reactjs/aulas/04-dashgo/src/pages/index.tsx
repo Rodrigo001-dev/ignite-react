@@ -1,5 +1,7 @@
 import { Button, Flex, Stack } from '@chakra-ui/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Input } from '../components/Form/Input';
 
@@ -7,6 +9,11 @@ type SignInFormData = {
   email: string;
   password: string;
 };
+
+const signInFormSchema = yup.object().shape({
+  email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
+  password: yup.string().required('Senha obrigatória')
+});
 
 export default function SignIn() {
   // o react-hook-form utiliza do conceito de uncontrolled components que é uma
@@ -19,9 +26,9 @@ export default function SignIn() {
   // armazenado o valor do input dentro de uma variável no estado, nós acessamos
   // o valor do input no momento em que for necessário, isso é feito através de
   // refs dentro do React
-  const { register, handleSubmit, formState } = useForm();
-
-  const { errors } = formState;
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<SignInFormData>({
+    resolver: yupResolver(signInFormSchema)
+  });
 
   const handleSignIn: SubmitHandler<SignInFormData> = async (values, event) => {
     await new Promise(resolve => setTimeout(resolve, 2000));
@@ -55,6 +62,7 @@ export default function SignIn() {
             name="email" 
             type="email" 
             label="E-mail"
+            error={errors.email}
             // utilizando o conceito de uncontrolled components eu preciso sempre
             // passar a ref para o input mas por padrão o react-hook-form cria
             // essas referências de forma automática por isso eu passo somente
@@ -65,6 +73,7 @@ export default function SignIn() {
             name="password" 
             type="password" 
             label="Senha"
+            error={errors.password}
             {...register('password')}
           />
         </Stack>
@@ -73,7 +82,7 @@ export default function SignIn() {
           type="submit" 
           mt="6" 
           colorScheme="pink"
-          isLoading={formState.isSubmitting}
+          isLoading={isSubmitting}
         >
           Entrar
         </Button>
