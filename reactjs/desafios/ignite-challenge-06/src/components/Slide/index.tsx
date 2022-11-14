@@ -20,7 +20,7 @@ export function Slide() {
           title='Europa'
           description='O continente mais antigo.'
           link='europa'
-          imageSrl="/images/europe.jpg"
+          imageSrc="/images/europe.jpg"
         />
       </SwiperSlide>
 
@@ -29,7 +29,7 @@ export function Slide() {
           title='Ásia'
           description='O continente mais populoso.'
           link='asia'
-          imageSrl="/images/asia.jpg"
+          imageSrc="/images/asia.jpg"
         />
       </SwiperSlide>
 
@@ -38,7 +38,7 @@ export function Slide() {
           title='África'
           description='O continente mais colorido.'
           link='africa'
-          imageSrl="/images/africa.jpg"
+          imageSrc="/images/africa.jpg"
         />
       </SwiperSlide>
 
@@ -47,7 +47,7 @@ export function Slide() {
           title='América do Sul'
           description='O melhor continente.'
           link='south-america'
-          imageSrl="/images/south-america.jpg"
+          imageSrc="/images/south-america.jpg"
         />
       </SwiperSlide>
 
@@ -56,7 +56,7 @@ export function Slide() {
           title='América do Norte'
           description='O continente mais tecnológico.'
           link='north-ameria'
-          imageSrl="/images/north-america.jpg"
+          imageSrc="/images/north-america.jpg"
         />
       </SwiperSlide>
 
@@ -65,7 +65,7 @@ export function Slide() {
           title='Oceania'
           description='O continente mais peculiar.'
           link='oceania'
-          imageSrl="/images/oceania.jpg"
+          imageSrc="/images/oceania.jpg"
         />
       </SwiperSlide>
     </Swiper>

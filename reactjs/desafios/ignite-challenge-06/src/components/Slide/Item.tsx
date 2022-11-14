@@ -5,10 +5,10 @@ interface SlideItemProps {
   title: string;
   description: string;
   link: string;
-  imageSrl: string;
+  imageSrc: string;
 }
 
-export function SlideItem({ title, description, link, imageSrl }: SlideItemProps) {
+export function SlideItem({ title, description, link, imageSrc }: SlideItemProps) {
   return (
     <Link href={`/continents/${link}`}>
       <Flex
@@ -17,7 +17,7 @@ export function SlideItem({ title, description, link, imageSrl }: SlideItemProps
         align="center"
         justify="center"
         direction="column"
-        bgImage={`url(${imageSrl})`}
+        bgImage={`url(${imageSrc})`}
         bgPosition='center'
         bgRepeat='no-repeat'
         bgSize='cover'

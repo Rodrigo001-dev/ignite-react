@@ -1,6 +1,4 @@
 import { Box, Flex, Heading, Stack, Text, useBreakpointValue } from "@chakra-ui/react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
 
 import { Banner } from "../components/Banner";
 import { TravelType } from "../components/TravelType";
@@ -13,7 +11,7 @@ export default function Home() {
   });
 
   return (
-    <Box w="100vw">
+    <Box w="100%">
       <Banner />
 
       { isWideVersion ? (
