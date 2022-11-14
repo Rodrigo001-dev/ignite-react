@@ -9,7 +9,7 @@ export function Texts() {
         pt={["7", "20"]} 
         pb={["2" ,"5"]}
       >
-        5 Continentes,<br/> 
+        6 Continentes,<br/> 
         infinitas possibilidades.
       </Text>
       <Text 
