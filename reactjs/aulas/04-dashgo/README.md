@@ -51,6 +51,8 @@ $ yarn dev
 ```
 ## :atom_symbol: Desafios
 
+[Desafio 1](https://github.com/Rodrigo001-dev/ignite/tree/main/reactjs/desafios/ignite-challenge-06): Primeiro desafio com o objetivo de criar uma aplicação totalmente responsiva utilizando Chakra-UI
+
 ## 💻 Autor
 
 Feito com 💜 by Rodrigo Rael
