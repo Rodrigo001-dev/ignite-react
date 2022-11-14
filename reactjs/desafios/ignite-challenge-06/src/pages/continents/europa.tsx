@@ -1,4 +1,5 @@
 import { Box, Center, Flex, Heading, SimpleGrid, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Card } from "../../components/Card";
 
 import { Info } from "../../components/Info";
 
@@ -82,7 +83,11 @@ export default function Europa() {
             Cidades +100
           </Heading>
 
-          <SimpleGrid columns={[1, 4]} spacing={[5, 10]} my={["5", "45px"]}>
+          <SimpleGrid columns={[1, 1, 2, 4]} spacing={[5, 10]} my={["5", "45px"]}>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
             <Card />
           </SimpleGrid>
         </Box>
