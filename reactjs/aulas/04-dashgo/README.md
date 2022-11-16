@@ -4,7 +4,7 @@
 
 > <b>Dashgo</b> é a quarta aplicação criada no chapter 4 da trilha React de 2021 da [Rocketseat](https://github.com/Rocketseat), nessa aplicação o objetivo foi criar um dashboard totalmente responsivo abordando o conceito de UI-declarativa utilizando Chakra UI.
 
-Nessa aplicação utilizamos Next com o Chakra-UI, o Chakra não nos entrega uma convenção sobre o layout, ele vem com elementos muitos secos para sair utilizando, é possível construir qualquer layout utilizando Chakra, não é como o material-UI que é necessário seguir uma convenção de layout, o Chakra trás componentes muito limpos em que nós definimos a estilização no formato em que preferirmos. Logo depois de construir a interface totalmente responsiva utilizamos o react-query para realizar o data-fething.
+Nessa aplicação utilizamos Next com o Chakra-UI, o Chakra não nos entrega uma convenção sobre o layout, ele vem com elementos muitos secos para sair utilizando, é possível construir qualquer layout utilizando Chakra, não é como o material-UI que é necessário seguir uma convenção de layout, o Chakra trás componentes muito limpos em que nós definimos a estilização no formato em que preferirmos. Logo depois de construir a interface totalmente responsiva utilizamos o react-query para realizar o data-fething, o React Query é um server-state library, ou seja, ele controla o estado da comunicação do frontend com o servidor.
 
 <LINKEDIN>
   Mas afinal, o que é interface declarativa?

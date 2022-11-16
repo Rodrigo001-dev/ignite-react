@@ -36,11 +36,16 @@ export default function UserList() {
   //   return data;
   // });
 
+  // quando utilizamos uma estratégia de dados em cache como o react-query é sempre
+  // interessante ter dois Loadings, um para o carregamento inicial dos dados
+  // (isLoading) e outro para a renovação dos dados(isFetching)
+
   // dentro do useQuery eu posso obter algumas informações, a primeira dessas
   // informações é o próprio data, a segunda informação é o isLoading que vai
-  // dizer se a requisição está em processo de carregamento ou não, outra
-  // informação é o error, sse aconteceu um erro ou não dentro da aplicação
-  const { data, isLoading, error } = useQuery('users', async () => {
+  // dizer se a requisição está em processo de carregamento ou não, o isFetching
+  // vai sinalizar se está sendo realizado o refetch(renovação) dos dados ou não,
+  // outra informação é o error, se aconteceu um erro ou não dentro da aplicação
+  const { data, isLoading, isFetching, error } = useQuery('users', async () => {
     const response = await fetch('http://localhost:3000/api/users');
     const data = await response.json();
 
@@ -59,6 +64,13 @@ export default function UserList() {
     });
 
     return users;
+  }, {
+    // o staleTime diz que essa query durante 5 segundos(1000 * 5) vai ser fresh
+    // fresh quer dizer que os dados são recentes, que não vai ser necessário
+    // realizar uma chamada para a API, ou seja, eu estou dizendo que durante
+    // 5 segundos não vai ser necessário realizar uma chamada para API para
+    // atualizar os dados
+    staleTime: 1000 * 5, // 5 seconds
   });
 
   const isWideVersion = useBreakpointValue({
@@ -76,7 +88,21 @@ export default function UserList() {
 
         <Box flex="1" borderRadius={8} bg="gray.800" p="8">
           <Flex mb="8" justify="space-between" align="center">
-            <Heading size="lg" fontWeight="normal">Usuários</Heading>
+            <Heading size="lg" fontWeight="normal">
+              Usuários
+
+              {
+                /*
+                  o isFetching fica como true quando está acontecento o primeiro
+                  carregamento, por isso o !isLoading
+                  eu só vou mostrar o Loading do isFetching quando eu não estiver
+                  no primeiro carregamento(!isLoading) e estiver com o isFetching
+                  , ou seja, eu vou mostrar esse loading somente na renovação dos
+                  dados e não no primeiro carregamento
+                */
+              }
+              { !isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4" /> }
+            </Heading>
 
             {
               /*
