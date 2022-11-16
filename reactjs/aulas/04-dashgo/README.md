@@ -4,7 +4,7 @@
 
 > <b>Dashgo</b> é a quarta aplicação criada no chapter 4 da trilha React de 2021 da [Rocketseat](https://github.com/Rocketseat), nessa aplicação o objetivo foi criar um dashboard totalmente responsivo abordando o conceito de UI-declarativa utilizando Chakra UI.
 
-Nessa aplicação utilizamos Next com o Chakra-UI, o Chakra não nos entrega uma convenção sobre o layout, ele vem com elementos muitos secos para sair utilizando, é possível construir qualquer layout utilizando Chakra, não é como o material-UI que é necessário seguir uma convenção de layout, o Chakra trás componentes muito limpos em que nós definimos a estilização no formato em que preferirmos.
+Nessa aplicação utilizamos Next com o Chakra-UI, o Chakra não nos entrega uma convenção sobre o layout, ele vem com elementos muitos secos para sair utilizando, é possível construir qualquer layout utilizando Chakra, não é como o material-UI que é necessário seguir uma convenção de layout, o Chakra trás componentes muito limpos em que nós definimos a estilização no formato em que preferirmos. Logo depois de construir a interface totalmente responsiva utilizamos o react-query para realizar o data-fething.
 
 <LINKEDIN>
   Mas afinal, o que é interface declarativa?
@@ -19,6 +19,14 @@ Nessa aplicação utilizamos Next com o Chakra-UI, o Chakra não nos entrega uma
   E a segunda coisa para realmente evitar ter muita estilização junto no HTML deixando o código com uma manutenibilidade muito baixa é componentizar ainda mais a nossa aplicação, ou seja, dividir ainda mais a nossa aplicação em pequenos componentes.
 
   Utilizando uma biblioteca de interface declarativa tira um pouco de complexidade quando o projeto cresce, porque quando acontece do projeto crescer muito e é necessário editar uma parte pequena, vai ter tanto css em tantos lugares da aplicação que fica difícil de mexer em todas as partes de um componente de uma só vez de uma maneira rápida, por isso que a interface declarativa deixa isso declarativo, mais claro para gente onde é preciso mexer nas coisas para mudar algo.
+
+  Mas por que utilizar o react-query para as consultas no backend?
+
+  A partir do momento que utilizamos o React-Query, quando for feito uma
+  requisição para o backend os dados dessa requisição vão ficar armazenados
+  em um cache dentro do frontend, e esse cache pode ser utilizado quando precisar dos mesmos dados, dentro de um certo intervalo de tempo, não vai ser necessário
+  ir lá novamente no backend buscar esses dados porque já vai ter uma vesão
+  deles em cache.
 </LINKEDIN>
 
 
@@ -27,6 +35,7 @@ Nessa aplicação utilizamos Next com o Chakra-UI, o Chakra não nos entrega uma
 <a href="https://www.typescriptlang.org/" target="_blank"> <img src="https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white" alt="TypeScript"> </a>
 <a href="https://nextjs.org/" target="_blank"> <img src="https://img.shields.io/badge/Next-black?style=flat-square&logo=next.js&logoColor=white" alt="Next"> </a>
 <a href="https://chakra-ui.com/" target="_blank"> <img src="https://img.shields.io/badge/-ChakraUI-%234ED1C5?style=flat-square&logo=chakraui&logoColor=white" alt="Chakra UI"> </a>
+<a href="https://react-query-v3.tanstack.com/" target="_blank"> <img src="https://img.shields.io/badge/-React%20Query-FF4154?style=flat-square&logo=react%20query&logoColor=white" alt="React Query"> </a>
 
 ## :construction_worker: Executando
 

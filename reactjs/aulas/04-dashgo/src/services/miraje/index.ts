@@ -35,7 +35,7 @@ export function makeServer() {
           return `User ${i + 1}` // nesse caso vai retornar User 1(é autoincrement)
         },
         email() {
-          return faker.internet.email().toLowerCase;
+          return faker.internet.email().toLowerCase();
         },
         createdAt() {
           // o 10 é com quantos dias eu quero que a data seja recente no caso
