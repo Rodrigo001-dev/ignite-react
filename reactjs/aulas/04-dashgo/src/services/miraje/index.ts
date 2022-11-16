@@ -51,7 +51,8 @@ export function makeServer() {
       // como eu já tenho o meu factory criado eu passo um server.createList para
       // criar uma lista passando o nome do meu factory(user) e no segundo
       // parâmetro é quantos usuários eu quero criar(200)
-      server.createList('user', 200);
+      // server.createList('user', 200);
+      server.createList('user', 10);
     },
     
     routes() {
