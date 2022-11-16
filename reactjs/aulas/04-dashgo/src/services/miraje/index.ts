@@ -1,4 +1,6 @@
-import { createServer, Model } from 'miragejs';
+import { createServer, Factory, Model } from 'miragejs';
+// o faker é uma biblioteca de geração de dados ficticios
+import faker from 'faker';
 
 type User = {
   // eu estou definido os nomes dos campos como se fossem colunas no meu banco
@@ -18,6 +20,38 @@ export function makeServer() {
       // miraje precisam conter os campos que tem dentro do type User mas talvez
       // não conter todos os campos
       user: Model.extend<Partial<User>>({})
+    },
+
+    // o conceito de factories do miraje é uma forma de gerar dados em grande
+    // escala  
+    factories: {
+      user: Factory.extend({
+        // aqui eu passo cada um dos campos que eu tenho dentro do user como um
+        // método
+        name(i) {
+          // todo método recebe um indice(i) que é qual usuário por exemplo esta
+          // sendo criado no momento
+          // pelo i começar com 0  eu coloquei i + 1 para começar com 1
+          return `User ${i + 1}` // nesse caso vai retornar User 1(é autoincrement)
+        },
+        email() {
+          return faker.internet.email().toLowerCase;
+        },
+        createdAt() {
+          // o 10 é com quantos dias eu quero que a data seja recente no caso
+          // nos ultimos 10 dias
+          return faker.date.recent(10);
+        },
+      })
+    },
+
+    // o conceito de seeds server para criar qualquer tipo de dado assim que o
+    // servidor do miraje for inicializado
+    seeds(server) {
+      // como eu já tenho o meu factory criado eu passo um server.createList para
+      // criar uma lista passando o nome do meu factory(user) e no segundo
+      // parâmetro é quantos usuários eu quero criar(200)
+      server.createList('user', 200);
     },
     
     routes() {
