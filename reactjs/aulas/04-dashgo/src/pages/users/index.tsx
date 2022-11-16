@@ -5,6 +5,7 @@ import {
   Flex, 
   Heading, 
   Icon, 
+  Spinner, 
   Table, 
   Tbody, 
   Td, 
@@ -28,14 +29,23 @@ export default function UserList() {
   // esse cache, revalidar ele, resetar, excluir ou qualquer coisa assim eu vou
   // ter um nome(chave) para me referir a esses dados e como segundo parâmetro
   // eu passo um método(uma função) que vai me retornar os dados
-  const query = useQuery('users', async () => {
+  // const query = useQuery('users', async () => {
+  //   const response = await fetch('http://localhost:3000/api/users');
+  //   const data = await response.json();
+
+  //   return data;
+  // });
+
+  // dentro do useQuery eu posso obter algumas informações, a primeira dessas
+  // informações é o próprio data, a segunda informação é o isLoading que vai
+  // dizer se a requisição está em processo de carregamento ou não, outra
+  // informação é o error, sse aconteceu um erro ou não dentro da aplicação
+  const { data, isLoading, error } = useQuery('users', async () => {
     const response = await fetch('http://localhost:3000/api/users');
     const data = await response.json();
 
     return data;
   });
-
-  console.log(query);
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -73,53 +83,74 @@ export default function UserList() {
             </Link>
           </Flex>
 
-          <Table colorScheme="whiteAlpha">
-            <Thead>
-              <Tr>
-                {/* px={small="4", medium="4", large="6"} */}
-                <Th px={["4", "4", "6"]} color="gray.300" width="8">
-                  <Checkbox colorScheme="pink" />
-                </Th>
+          {
+          /* 
+            se o isLoading estiver true, ou seja, se estiver carregando eu vou
+            mostrar um Spinner no centro da tela
+          */
+          }
+          { isLoading ? (
+            <Flex justify="center">
+              <Spinner />
+            </Flex>
+            // se não, se ocorreu um erro eu vou mostar uma menssagem de erro
+          ) : error ? (
+            <Flex justify="center">
+              <Text>Falha ao obter dados dos usuários.</Text>
+            </Flex>
+            // se não, ou seja, se não estiver com o isLoading true e não tiver
+            // dado nenhum erro eu vou mostar a tabela de usuários
+          ) : (
+            <>
+              <Table colorScheme="whiteAlpha">
+                <Thead>
+                  <Tr>
+                    {/* px={small="4", medium="4", large="6"} */}
+                    <Th px={["4", "4", "6"]} color="gray.300" width="8">
+                      <Checkbox colorScheme="pink" />
+                    </Th>
 
-                <Th>Usuário</Th>
-                { isWideVersion && <Th>Data de cadastro</Th> }
-                { isWideVersion && <Th width="8"></Th> }
-              </Tr>
-            </Thead>
+                    <Th>Usuário</Th>
+                    { isWideVersion && <Th>Data de cadastro</Th> }
+                    { isWideVersion && <Th width="8"></Th> }
+                  </Tr>
+                </Thead>
 
-            <Tbody>
-              <Tr>
-                <Td px={["4", "4", "6"]}>
-                  <Checkbox colorScheme="pink" />
-                </Td>
+                <Tbody>
+                  <Tr>
+                    <Td px={["4", "4", "6"]}>
+                      <Checkbox colorScheme="pink" />
+                    </Td>
 
-                <Td>
-                  <Box>
-                    <Text fontWeight="bold">Rodrigo Rael</Text>
-                    <Text fontSize="sm" color="gray.300">rodrigorael53@gmail.com</Text>
-                  </Box>
-                </Td>
+                    <Td>
+                      <Box>
+                        <Text fontWeight="bold">Rodrigo Rael</Text>
+                        <Text fontSize="sm" color="gray.300">rodrigorael53@gmail.com</Text>
+                      </Box>
+                    </Td>
 
-                { isWideVersion && <Td>04 de Abril, 2022</Td> }
+                    { isWideVersion && <Td>04 de Abril, 2022</Td> }
 
-                { isWideVersion && (
-                  <Td>
-                    <Button 
-                      as="a" 
-                      size="sm" 
-                      fontSize="sm" 
-                      colorScheme="purple"
-                      leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                    >
-                      Editar
-                    </Button>
-                  </Td>
-                ) }
-              </Tr>
-            </Tbody>
-          </Table>
+                    { isWideVersion && (
+                      <Td>
+                        <Button 
+                          as="a" 
+                          size="sm" 
+                          fontSize="sm" 
+                          colorScheme="purple"
+                          leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
+                        >
+                          Editar
+                        </Button>
+                      </Td>
+                    ) }
+                  </Tr>
+                </Tbody>
+              </Table>
 
-          <Pagination />
+              <Pagination />
+            </>
+          ) }
         </Box>
       </Flex>
     </Box>
