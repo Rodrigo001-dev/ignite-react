@@ -23,6 +23,8 @@ import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
 
+import { api } from "../../services/api";
+
 export default function UserList() {
   // dentro do useQuery('') como primeiro parâmetro eu passo qual a chave que
   // vou utilizar para armazenar em cache, para caso depois eu precise limpar
@@ -46,8 +48,7 @@ export default function UserList() {
   // vai sinalizar se está sendo realizado o refetch(renovação) dos dados ou não,
   // outra informação é o error, se aconteceu um erro ou não dentro da aplicação
   const { data, isLoading, isFetching, error } = useQuery('users', async () => {
-    const response = await fetch('http://localhost:3000/api/users');
-    const data = await response.json();
+    const { data } = await api.get('users');
 
     // formatando os dados antes de chegar no frontnend
     const users = data.users.map(user => {
