@@ -17,13 +17,12 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
-import { useQuery } from 'react-query';
 
 import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
 
-import { api } from "../../services/api";
+import { useUsers } from "../../services/hooks/useUsers";
 
 export default function UserList() {
   // dentro do useQuery('') como primeiro parâmetro eu passo qual a chave que
@@ -47,32 +46,7 @@ export default function UserList() {
   // dizer se a requisição está em processo de carregamento ou não, o isFetching
   // vai sinalizar se está sendo realizado o refetch(renovação) dos dados ou não,
   // outra informação é o error, se aconteceu um erro ou não dentro da aplicação
-  const { data, isLoading, isFetching, error } = useQuery('users', async () => {
-    const { data } = await api.get('users');
-
-    // formatando os dados antes de chegar no frontnend
-    const users = data.users.map(user => {
-      return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        createdAt: new Date(user.createdAt).toLocaleDateString('pt-BR', {
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric',
-        })
-      }
-    });
-
-    return users;
-  }, {
-    // o staleTime diz que essa query durante 5 segundos(1000 * 5) vai ser fresh
-    // fresh quer dizer que os dados são recentes, que não vai ser necessário
-    // realizar uma chamada para a API, ou seja, eu estou dizendo que durante
-    // 5 segundos não vai ser necessário realizar uma chamada para API para
-    // atualizar os dados
-    staleTime: 1000 * 5, // 5 seconds
-  });
+  const { data, isLoading, isFetching, error } = useUsers();
 
   const isWideVersion = useBreakpointValue({
     base: false,
