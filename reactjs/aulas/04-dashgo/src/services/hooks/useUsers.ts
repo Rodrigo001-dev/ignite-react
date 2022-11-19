@@ -2,11 +2,18 @@ import { useQuery } from "react-query";
 
 import { api } from "../api";
 
+type User = {
+  id: string;
+  name: string;
+  email: string;
+  createdAt: string;
+};
+
 // eu desacoplei a função que faz o fetch dos dados dos usuários do hook que
 // conecta essa função com o react-query, ou seja, se em algum momento da
 // aplicação eu precisar pegar uma listagem dos usuários fora do react-query
 // eu vou ter essa função separada
-export async function getUsers() {
+export async function getUsers(): Promise<User[]> {
   const { data } = await api.get('users');
 
   // formatando os dados antes de chegar no frontnend
