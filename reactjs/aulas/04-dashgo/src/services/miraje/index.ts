@@ -1,4 +1,4 @@
-import { createServer, Factory, Model } from 'miragejs';
+import { createServer, Factory, Model, Response } from 'miragejs';
 // o faker é uma biblioteca de geração de dados ficticios
 import faker from 'faker';
 
@@ -52,7 +52,7 @@ export function makeServer() {
       // criar uma lista passando o nome do meu factory(user) e no segundo
       // parâmetro é quantos usuários eu quero criar(200)
       // server.createList('user', 200);
-      server.createList('user', 10);
+      server.createList('user', 200);
     },
     
     routes() {
@@ -70,7 +70,49 @@ export function makeServer() {
       // automáticamente que quando eu chamar a rota users com o método get ele
       // deve retornar a lista completa de usuários que eu tenho dentro da
       // aplicação 
-      this.get('/users');
+      this.get('/users', function (schema, request) {
+        // por conta do miraje não ter paginação, eu vou ter que criar a minha
+        // própria paginação
+        // page é qual a página que eu quero exibir no momento(1)
+        // per_page é quantos registros eu quero mostrar por página(10) 
+        const { page = 1, per_page = 10 } = request.queryParams;
+
+        // eu quero calcular quantos registros existem no total da parte de usuários
+        // shecme.all() vai pegar todos os dados de um model('user') e o length
+        // é para saber exatamente quantos resitros tem
+        const total = schema.all('user').length;
+
+        // agora eu vou calculcar o incicio da página e o final da página
+        // baseado nos parâmetros que eu recebo do request.queryParams
+        // eu vou converter o page para um number porque todo queryParams vem
+        // como string
+        const pageStart = (Number(page) - 1) * Number(per_page);
+        const pageEnd = pageStart + Number(per_page);
+
+        // quando estamos criando as nossas rotas e retornando os dados da maneira
+        // que queremos existe um conceito dentro do miraje que se chama
+        // serialização(serialize), a serialização é uma forma de conseguir com
+        // que os dados que estejam sendo retornados passem pelo processo de
+        // serialização do miraje onde ele vai conseguir ter controle sobre esses
+        // dados para converter esses dados da maneira que ele precisa converter
+        const users = this.serialize(schema.all('user'))
+          // eu quero pegar todos os usuários só que eu quero cortar(slice) essa
+          // listagem no pageStart e no pageEnd
+          .users.slice(pageStart, pageEnd);
+
+        // por conta do total de registros ser um meta-dado, ou seja, ele não
+        // não faz parte da listagem de usuários em si, ele só vai ajudar a fazer
+        // a paginação não é muito interessante enviar essa informação no corpo da
+        // requisição, por isso eu enviei essa informaçã pelos headers
+        return new Response(
+          // status code
+          200,
+          // headers
+          { 'x-total-count': String(total) },
+          // registros
+          { users }
+        )
+      });
       // ou seja se eu criar o this.post('/users'); o miraje automáticamente
       // vai criar a estrutura necessária para eu conseguir criar um usuário sem
       // eu precisar vazer qualquer coisa, ou seja, se eu chamar a rota users com
