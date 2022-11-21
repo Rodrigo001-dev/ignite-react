@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
 
 import { api } from "../api";
 
@@ -47,7 +47,7 @@ export async function getUsers(page: number): Promise<GetUsersResponse> {
   };
 }
 
-export function useUsers(page: number) {
+export function useUsers(page: number, options?: UseQueryOptions) {
   // eu passei como ['users', page] porque sempre que eu tiver uma informação
   // que vai mudar o retorno de uma query do react-query, eu preciso incluir
   // essa informção na chave
@@ -59,5 +59,8 @@ export function useUsers(page: number) {
     // atualizar os dados
     // staleTime: 1000 * 5, // 5 seconds
     staleTime: 1000 * 60 * 10, // 10 minutes
-  });
+    // dentro dos options tem o initialData, esse initialData é qual valor que vai
+    // ser inicializar a listagem de users
+    ...options
+  }) as UseQueryResult<GetUsersResponse, unknown>;
 };
