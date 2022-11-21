@@ -1,4 +1,4 @@
-import { createServer, Factory, Model, Response } from 'miragejs';
+import { createServer, Factory, Model, Response, ActiveModelSerializer } from 'miragejs';
 // o faker é uma biblioteca de geração de dados ficticios
 import faker from 'faker';
 
@@ -12,7 +12,15 @@ type User = {
 
 export function makeServer() {
   const server = createServer({
-    // declarando os model, informando qual tipo de dado eu tenho dentro do miraje
+    // o serializers vai determinar para o miraje, como ele deve interpretar os
+    // dados que são enviados por ele
+    serializers: {
+      // o ActiveModelSerializer é um dos padrões de escrita de APIs
+      // ActiveModelSerializer vai permitir enviar e receber os dados, relacionamentos,
+      // tudo em uma única requisição HTTP
+      application: ActiveModelSerializer,
+    },
+    // declarando os models, informando qual tipo de dado eu tenho dentro do miraje
     models: {
       // pode existir momentos em que eu precise utilizar do User sem informar
       // todos os campos e é para isso que serve o Partial

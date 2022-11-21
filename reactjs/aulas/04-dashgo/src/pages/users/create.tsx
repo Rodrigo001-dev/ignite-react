@@ -12,10 +12,15 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useMutation } from 'react-query';
 
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
 import { Input } from "../../components/Form/Input";
+
+import { api } from "../../services/api";
+import { queryClient } from "../../services/queryClient";
 
 type CreateUserFormData = {
   name: string;
@@ -38,14 +43,43 @@ const createUserFormSchema = yup.object().shape({
 });
 
 export default function CreateUser() {
+  const router = useRouter();
+
+  // o useMutation é utilizado para realizar operações de criação, atualização
+  // e deletar um dado, tudo aquilo que vai criar ou alterar um dado
+  // deferente do useQuery que é utilizado para busar um ou mais dados
+  // a diferença de utilizar o useMutation para fazer a função da forma tradicional
+  // quando eu chamar essa Mutation, essa chamada para a API, assim como no useQuery
+  // eu vou conseguir monitorar o estado dessa chamada
+  const createUser = useMutation(async (user: CreateUserFormData) => {
+    const response = await api.post('users', {
+      user: {
+        ...user,
+        created_at: new Date(),
+      }
+    });
+
+    return response.data.user;
+  }, {
+    // quando cadastramos uma informação nova de usuário é muito importante que
+    // seja limpado o cache das páginas que já tem essa informação guardada em cache
+    onSuccess: () => {
+      // quando o cadastro do usuário der sucesso eu quero inválidar o cache que
+      // eu tenho criado anteriormente na listagem de usuários
+      queryClient.invalidateQueries('users')
+    }
+  });
+
   const { register, handleSubmit, formState: { errors, isSubmitting }} = useForm<CreateUserFormData>({
     resolver: yupResolver(createUserFormSchema)
   });
 
   const handleCreateUser: SubmitHandler<CreateUserFormData> = async (values) => {
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    // o mutateAsync vai executar a função da mutation de forma assíncrona, ou seja,
+    // como uma Promise
+    await createUser.mutateAsync(values);
 
-    console.log(values);
+    router.push('/users');
   };
 
   return (
