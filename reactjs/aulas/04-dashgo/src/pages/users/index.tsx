@@ -16,6 +16,7 @@ import {
   useBreakpointValue
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { useState } from "react";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 
 import { Header } from "../../components/Header";
@@ -25,6 +26,7 @@ import { Sidebar } from "../../components/Sidebar";
 import { useUsers } from "../../services/hooks/useUsers";
 
 export default function UserList() {
+  const [page, setPage] = useState(1);
   // dentro do useQuery('') como primeiro parâmetro eu passo qual a chave que
   // vou utilizar para armazenar em cache, para caso depois eu precise limpar
   // esse cache, revalidar ele, resetar, excluir ou qualquer coisa assim eu vou
@@ -46,7 +48,7 @@ export default function UserList() {
   // dizer se a requisição está em processo de carregamento ou não, o isFetching
   // vai sinalizar se está sendo realizado o refetch(renovação) dos dados ou não,
   // outra informação é o error, se aconteceu um erro ou não dentro da aplicação
-  const { data, isLoading, isFetching, error } = useUsers();
+  const { data, isLoading, isFetching, error } = useUsers(page);
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -132,7 +134,7 @@ export default function UserList() {
                 </Thead>
 
                 <Tbody>
-                  {data.map(user => {
+                  {data.users.map(user => {
                     return (
                       <Tr key={user.id}>
                         <Td px={["4", "4", "6"]}>
@@ -168,9 +170,9 @@ export default function UserList() {
               </Table>
 
               <Pagination
-                totalCountOfRegisters={200}
-                currentPage={5}
-                onPageChange={() => {}}
+                totalCountOfRegisters={data.totalCount}
+                currentPage={page}
+                onPageChange={setPage}
               />
             </>
           ) }

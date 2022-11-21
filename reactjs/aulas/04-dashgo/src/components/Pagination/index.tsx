@@ -75,7 +75,7 @@ export function Pagination({
         {/* primeira página */}
         {currentPage > (1 + siblingsCount) && (
           <>
-            <PaginationItem pageNumber={1} />
+            <PaginationItem onPageChange={onPageChange} pageNumber={1} />
             {/* se eu estou com mais de 2 páginas de distância da primeira página */}
             {currentPage > (2 + siblingsCount) && (
               <Text color="gray.300" width="8" textAlign="center">...</Text>
@@ -93,14 +93,14 @@ export function Pagination({
           */
         }
         {previousPages.length > 0 && previousPages.map(page => {
-          return <PaginationItem key={page} pageNumber={page} />
+          return <PaginationItem onPageChange={onPageChange} key={page} pageNumber={page} />
         })}
 
-        <PaginationItem pageNumber={currentPage} isCurrent />
+        <PaginationItem onPageChange={onPageChange} pageNumber={currentPage} isCurrent />
 
         {/* próximas páginas */}
         {nextPages.length > 0 && nextPages.map(page => {
-          return <PaginationItem key={page} pageNumber={page} />
+          return <PaginationItem onPageChange={onPageChange} key={page} pageNumber={page} />
         })}
 
         {/* ultima página */}
@@ -109,7 +109,7 @@ export function Pagination({
             {(currentPage + 1 + siblingsCount) < lastPage && (
               <Text color="gray.300" width="8" textAlign="center">...</Text>
             )}
-            <PaginationItem pageNumber={lastPage} />
+            <PaginationItem onPageChange={onPageChange} pageNumber={lastPage} />
           </>
         )}
 
