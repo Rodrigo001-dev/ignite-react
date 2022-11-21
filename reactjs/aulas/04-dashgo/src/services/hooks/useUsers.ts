@@ -57,6 +57,7 @@ export function useUsers(page: number) {
     // realizar uma chamada para a API, ou seja, eu estou dizendo que durante
     // 5 segundos não vai ser necessário realizar uma chamada para API para
     // atualizar os dados
-    staleTime: 1000 * 5, // 5 seconds
+    // staleTime: 1000 * 5, // 5 seconds
+    staleTime: 1000 * 60 * 10, // 10 minutes
   });
 };

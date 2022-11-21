@@ -119,6 +119,7 @@ export function makeServer() {
       // o método post passando os campos dentro do tipo User ele vai criar
       // um usuário para mim de forma totalmente automátizada
       this.post('/users');
+      this.get('/users/:id');
 
       // utilizando o miraje no Next, o conceito de API routes do Next também
       // utilza os caminhos das rotas com o começo de /api, então umas das
