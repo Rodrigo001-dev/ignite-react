@@ -6,29 +6,6 @@
 
 Nessa aplicação utilizamos Next com o Chakra-UI, o Chakra não nos entrega uma convenção sobre o layout, ele vem com elementos muitos secos para sair utilizando, é possível construir qualquer layout utilizando Chakra, não é como o material-UI que é necessário seguir uma convenção de layout, o Chakra trás componentes muito limpos em que nós definimos a estilização no formato em que preferirmos. Logo depois de construir a interface totalmente responsiva utilizamos o react-query para realizar o data-fething, o React Query é um server-state library, ou seja, ele controla o estado da comunicação do frontend com o servidor.
 
-<LINKEDIN>
-  Mas afinal, o que é interface declarativa?
-
-  Interface declarativa é quando conseguimos principalmente definir a estilização dos nossos elementos direto pela tag dele.
-
-  Mas isso não iria sujar muito o nosso HTML?
-
-  Tem duas coisas que vão evitar que o nosso HTML fique muito sujo com muita estilização:
-
-  A primeira dessas coisas é que a grande maioria dessas bibliotecas de interface declarativa vem com um pacote de componentes muito legal para sair utilizando.
-  E a segunda coisa para realmente evitar ter muita estilização junto no HTML deixando o código com uma manutenibilidade muito baixa é componentizar ainda mais a nossa aplicação, ou seja, dividir ainda mais a nossa aplicação em pequenos componentes.
-
-  Utilizando uma biblioteca de interface declarativa tira um pouco de complexidade quando o projeto cresce, porque quando acontece do projeto crescer muito e é necessário editar uma parte pequena, vai ter tanto css em tantos lugares da aplicação que fica difícil de mexer em todas as partes de um componente de uma só vez de uma maneira rápida, por isso que a interface declarativa deixa isso declarativo, mais claro para gente onde é preciso mexer nas coisas para mudar algo.
-
-  Mas por que utilizar o react-query para as consultas no backend?
-
-  A partir do momento que utilizamos o React-Query, quando for feito uma
-  requisição para o backend os dados dessa requisição vão ficar armazenados
-  em um cache dentro do frontend, e esse cache pode ser utilizado quando precisar dos mesmos dados, dentro de um certo intervalo de tempo, não vai ser necessário
-  ir lá novamente no backend buscar esses dados porque já vai ter uma vesão
-  deles em cache.
-</LINKEDIN>
-
 
 ## 🚀 Tecnologias/Bibliotecas utilizadas
 
