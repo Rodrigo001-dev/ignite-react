@@ -29,7 +29,7 @@ import { api } from "../../services/api";
 import { getUsers, useUsers } from "../../services/hooks/useUsers";
 import { queryClient } from "../../services/queryClient";
 
-export default function UserList({ users }) {
+export default function UserList() {
   const [page, setPage] = useState(1);
   // dentro do useQuery('') como primeiro parâmetro eu passo qual a chave que
   // vou utilizar para armazenar em cache, para caso depois eu precise limpar
@@ -52,12 +52,11 @@ export default function UserList({ users }) {
   // dizer se a requisição está em processo de carregamento ou não, o isFetching
   // vai sinalizar se está sendo realizado o refetch(renovação) dos dados ou não,
   // outra informação é o error, se aconteceu um erro ou não dentro da aplicação
-  const { data, isLoading, isFetching, error } = useUsers(page, {
+  const { data, isLoading, isFetching, error } = useUsers(page);
     // para realizar a integração com o Next para poder utilizar o SSR
     // é preciso passar o initial Data, que nada mais é do que os dados que o
     // react-query vai iniciar
-    initialData: users,
-  });
+    // initialData: users,
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -211,12 +210,12 @@ export default function UserList({ users }) {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const { users, totalCount } = await getUsers(1);
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const { users, totalCount } = await getUsers(1);
   
-  return {
-    props: {
-      users
-    },
-  };
-};
+//   return {
+//     props: {
+//       users
+//     },
+//   };
+// };
