@@ -1,5 +1,5 @@
-import { createContext, ReactNode, useState } from 'react';
-import { setCookie } from 'nookies';
+import { createContext, ReactNode, useEffect, useState } from 'react';
+import { setCookie, parseCookies } from 'nookies';
 import Router from 'next/router';
 
 import { api } from '../services/api';
@@ -39,6 +39,31 @@ export function AuthProvider({ children }: AuthProviderProps) {
   // para eu saber se o usuário está autenticado ou não é só eu ver se existe
   // alguma coisa dentro da variável user
   const isAuthenticated = !! user;
+
+  // toda vez que o usuário acessar a aplicação pela primeira vez(apenas na primeira
+  // vez), carregar a informação do estado do usuário(user) novamente
+  // esse useEffect é para resolver o problema de se o usuário der um reload na página(F5)
+  // porque sem esse useEffect, quando o usuário fizesse um reload da página
+  // o estado de user iria estár vazio
+  useEffect(() => {
+    // eu buscar o token, fazer uma requisição para o backend(api de autenticação)
+    // e guardar as informações do usuário
+
+    // o parseCookies vai me devolder uma lista de todos os cookies que eu tenho
+    // salvo
+    // por conta do . entre o nextauth e o token(nextauth.token) eu tive que colocar
+    // '' por volta e renomear para token
+    const { 'nextauth.token': token } = parseCookies();
+
+    // se eu tiver um token salvo no storage
+    if (token) {
+      api.get('/me').then(response => {
+        const { email, permissions, roles } = response.data;
+
+        setUser({ email, permissions, roles });
+      })
+    };
+  }, []);
 
   async function signIn({ email, password }: SignInCredentials) {
     try {
@@ -80,6 +105,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
         permissions,
         roles
       });
+
+      // é importate que quando eu faça o login, eu também atualize a informação
+      // do header de autorização porque se eu não fizer isso e redirecionar o
+      // usuário para a tela de dashboard e fazer uma requisição naquela página
+      // vai dar erro, porque não vai ter o token para poder enviar nos headers
+      api.defaults.headers['Authorization'] = `Bearer ${token}`
 
       Router.push('/dashboard');
     } catch (error) {
