@@ -1,6 +1,8 @@
 import axios, { AxiosError } from 'axios';
 import { parseCookies, setCookie } from 'nookies';
 
+import { SignOut } from '../context/AuthContext';
+
 interface AxiosErrorResponse {
   code?: string;
 };
@@ -108,6 +110,12 @@ api.interceptors.response.use(response => {
       });
     } else { // se foi retornado o status de erro 401 mas o code não é token.expired
       // vai deslogar o usuário
+      SignOut();
     }
   }
+
+  // sempre que eu faço um interceptor no axios, se o interceptor não cair em
+  // nenhum dos ifs, eu básicamente deixo o erro do axios continuar acontecendo
+  // para que a próprio chamada a api trate o erro
+  return Promise.reject(error);
 });

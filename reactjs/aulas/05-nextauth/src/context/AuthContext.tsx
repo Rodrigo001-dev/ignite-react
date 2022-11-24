@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
-import { setCookie, parseCookies } from 'nookies';
+import { setCookie, parseCookies, destroyCookie } from 'nookies';
 import Router from 'next/router';
 
 import { api } from '../services/api';
@@ -34,6 +34,13 @@ type AuthProviderProps = {
 
 export const AuthContext = createContext({} as AuthContextData);
 
+export function SignOut() {
+  destroyCookie(undefined, 'nextauth.token');
+  destroyCookie(undefined, 'nextauth.refreshToken');
+
+  Router.push('/');
+};
+
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>();
   // para eu saber se o usuário está autenticado ou não é só eu ver se existe
@@ -61,6 +68,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
         const { email, permissions, roles } = response.data;
 
         setUser({ email, permissions, roles });
+      })
+      // so vai cair no catch se acontecer um erro nessa chamada a api, e não for
+      // um erro de refreshToken
+      .catch(() => {
+        SignOut();
       })
     };
   }, []);
