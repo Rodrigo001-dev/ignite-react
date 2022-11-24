@@ -6,6 +6,10 @@ interface AxiosErrorResponse {
 };
 
 let cookies = parseCookies();
+// essa variável identifica se eu estou atualizando o token ou não
+let isRefreshing = false;
+// todas as requisições que aconteceram que deram falha por causa do token expirado
+let failedRequestsQueue = [];
 
 export const api = axios.create({
   baseURL: 'http://localhost:3333',
@@ -37,25 +41,70 @@ api.interceptors.response.use(response => {
       cookies = parseCookies();
 
       const { 'nextauth.refreshToken': refreshToken } = cookies;
+      // o error.config é básicamente toda a configuração da requisição que eu
+      // fiz para o backend, ou seja, dentro do error.config vai ter todas as
+      // informações que eu preciso para repetir uma requisição para o backend
+      const originalConfig = error.config;
 
-      api.post('/refresh', {
-        refreshToken,
-      }).then(response => {
-        // dentro da minha resposta eu vou ter o meu novo token
-        const { token } = response.data;
+      // se eu ainda não estiver realizando um refresh de token, ou seja, se o
+      // isRefreshing for false
+      if (!isRefreshing) {
+        // quando eu receber a primeira responsta de token inválido, eu vou
+        // atualizar o token
+        isRefreshing = true;
 
-        // salvando os novos dados dentro dos cookies
-        setCookie(undefined, 'nextauth.token', token, {
-          maxAge: 60 * 60 * 24 * 30, // 30 days
-          path: '/'
+        api.post('/refresh', {
+          refreshToken,
+        }).then(response => {
+          // dentro da minha resposta eu vou ter o meu novo token
+          const { token } = response.data;
+  
+          // salvando os novos dados dentro dos cookies
+          setCookie(undefined, 'nextauth.token', token, {
+            maxAge: 60 * 60 * 24 * 30, // 30 days
+            path: '/'
+          });
+  
+          setCookie(undefined, 'nextauth.refreshToken', response.data.refreshToken, {
+            maxAge: 60 * 60 * 24 * 30, // 30 days
+            path: '/'
+          });
+  
+          api.defaults.headers['Authorization'] = `Bearer ${token}`;
+
+          // se o refresh deu certo, eu vou na minha lista de requisições falhadas
+          // e para cada uma delas eu vou pegar a requisição e executar o método
+          // onSuccess passando o token atualizado
+          failedRequestsQueue.forEach(request => request.onSuccess(token));
+          failedRequestsQueue = [];
+        }).catch(error => {
+          failedRequestsQueue.forEach(request => request.onFailure(error));
+        }).finally(() => {
+          isRefreshing = false;
         });
+      }
 
-        setCookie(undefined, 'nextauth.refreshToken', response.data.refreshToken, {
-          maxAge: 60 * 60 * 24 * 30, // 30 days
-          path: '/'
+      // eu estou retornando uma Promise porque o axios não suporta que eu realize
+      // o interceptor com async e usar o await, e com isso a unica forma de fazer
+      // com que um código possa ser assíncrono é retornando de dentro do interceptor
+      // uma Promise
+      return new Promise((resolve, reject) => {
+        failedRequestsQueue.push({
+          // onSuccess é o que vai acontecer quando o processo de refresh estiver
+          // finalizado
+          onSuccess: (token: string) => {
+            // trocando o Authorization com o novo token
+            originalConfig.headers['Authorization'] = `Bearer ${token}`;
+
+            // fazendo uma chamada a api de novo com o novo token
+            resolve(api(originalConfig));
+          },
+          // onFailure é o que acontece com aquela requisição caso o processo
+          // de refreshToken tenha dado errado
+          onFailure: (error: AxiosError) => {
+            reject(error);
+          }
         });
-
-        api.defaults.headers['Authorization'] = `Bearer ${token}`;
       });
     } else { // se foi retornado o status de erro 401 mas o code não é token.expired
       // vai deslogar o usuário
