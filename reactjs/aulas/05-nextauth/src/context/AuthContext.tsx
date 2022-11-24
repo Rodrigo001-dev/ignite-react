@@ -110,7 +110,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       // do header de autorização porque se eu não fizer isso e redirecionar o
       // usuário para a tela de dashboard e fazer uma requisição naquela página
       // vai dar erro, porque não vai ter o token para poder enviar nos headers
-      api.defaults.headers['Authorization'] = `Bearer ${token}`
+      api.defaults.headers['Authorization'] = `Bearer ${token}`;
 
       Router.push('/dashboard');
     } catch (error) {
