@@ -4,6 +4,8 @@ import { parseCookies } from 'nookies';
 
 import { AuthContext } from '../context/AuthContext';
 
+import { withSSRGuest } from '../utils/withSSRGuest';
+
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -42,28 +44,13 @@ export default function Home() {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  // por eu estar pelo lado do servidor no Next, toda vez que eu for utilizar
-  // as funções do nookies, eu sempre vou passar como primeiro parâmetro o contexto(ctx)
-  // antes, quando eu estava utilizando pelo lado do browser eu passada undefined
-  const cookies = parseCookies(ctx);
-
-  // se dentro dos cookies existe o token
-  if (cookies['nextauth.token']) {
-    return {
-      // eu vou redirecionar o usuário para a página de dashboard
-      redirect: {
-        destination: '/dashboard',
-        // colocando o permanent como false eu falo que o redirecionamento não é
-        // permanente por conta do HTTP code para o browser entender se é um
-        // redirecionamento que sempre vai acontecer ou se só aconteceu dessa vez
-        // por conta de alguma condição
-        permanent: false,
-      }
-    }
-  }
-
+// utilizando do conceito da progração funcional chamado higher order function
+// que básicamente quando uma função(withSSRGuest) retorna uma outra função ou
+// uma função recebe uma função como parâmetro
+// essa higher order function server para quando eu quero garantir que uma página
+// não possa ser acessada por um usuário que já está logado
+export const getServerSideProps = withSSRGuest(async (ctx) => {
   return {
     props: {}
   }
-}
+});
