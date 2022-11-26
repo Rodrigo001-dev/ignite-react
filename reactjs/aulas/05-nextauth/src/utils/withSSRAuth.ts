@@ -1,5 +1,7 @@
 import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from "next";
-import { parseCookies } from "nookies";
+import { destroyCookie, parseCookies } from "nookies";
+
+import { AuthTokenError } from "../services/errors/AuthTokenError";
 
 // eu vou utilizar essa função em páginas que eu quero que ela só possam ser
 // acessadas por usuários autenticados
@@ -25,12 +27,29 @@ export function withSSRAuth<P>(fn: GetServerSideProps<P>) {
       }
     }
 
-    // se não entrar no if eu vou retornar a função original do getServerSideProps
-    // async (ctx) => {
-    //   return {
-    //     props: {}
-    //   }
-    // }
-    return await fn(ctx);
+    try {
+      // se não entrar no if eu vou retornar a função original do getServerSideProps
+      // async (ctx) => {
+      //   return {
+      //     props: {}
+      //   }
+      // }
+      return await fn(ctx);
+    } catch (error) {
+      // se o erro for uma instância de AuthTokenError
+      if (error instanceof AuthTokenError) {
+        // eu vou destruir os cookies
+        destroyCookie(ctx, 'nextauth.token');
+        destroyCookie(ctx, 'nextauth.refreshToken');
+
+        // e fazer um redirecionamento para a página Home
+        return {
+          redirect: {
+            destination: '/',
+            permanent: false,
+          }
+        }
+      }
+    }
   }
 }

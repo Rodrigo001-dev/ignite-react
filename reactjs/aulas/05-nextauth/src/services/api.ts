@@ -3,6 +3,8 @@ import { parseCookies, setCookie } from 'nookies';
 
 import { SignOut } from '../context/AuthContext';
 
+import { AuthTokenError } from './errors/AuthTokenError';
+
 interface AxiosErrorResponse {
   code?: string;
 };
@@ -124,9 +126,12 @@ export function setupAPIClient(ctx = undefined) {
         });
       } else { // se foi retornado o status de erro 401 mas o code não é token.expired
         // vai deslogar o usuário
+        // se está pelo lado do browser
         if (process.browser) {
           // vai executar essa função
           SignOut();
+        } else {
+          return Promise.reject(new AuthTokenError());
         }
       }
     }
