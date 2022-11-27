@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import Link from "next/link";
 
 import { AuthContext } from "../context/AuthContext";
 
@@ -23,7 +24,7 @@ export default function Dashboard() {
       <h1>Dashboard: {user?.email}</h1>
 
       <Can permissions={['metrics.list']}>
-        <div>Métricas</div>
+        <Link href="/metrics">Métricas</Link>
       </Can>
     </>
   );
