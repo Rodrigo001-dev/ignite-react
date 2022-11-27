@@ -23,11 +23,13 @@ export default function Dashboard() {
     <>
       <h1>Dashboard: {user?.email}</h1>
 
-      <button onClick={signOut}>Sign out</button>
+      <div>
+        <button onClick={signOut}>Sign out</button>
 
-      <Can permissions={['metrics.list']}>
-        <Link href="/metrics">Métricas</Link>
-      </Can>
+        <Can permissions={['metrics.list']}>
+          <Link href="/metrics">Métricas</Link>
+        </Can>
+      </div>
     </>
   );
 };

@@ -55,13 +55,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
   // alguma coisa dentro da variável user
   const isAuthenticated = !! user;
 
+  // esse useEffect vai fazer com que todas as abas do navegador executem a função
+  // de signOut para deslogar o usuário
   useEffect(() => {
     authChannel = new BroadcastChannel('auth');
 
     authChannel.onmessage = (message) => {
       switch (message.data) {
         case 'signOut':
-          signOut();
+          Router.push('/');
           break;
         default:
           break;
