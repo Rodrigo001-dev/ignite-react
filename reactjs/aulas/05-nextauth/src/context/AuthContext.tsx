@@ -21,7 +21,8 @@ type AuthContextData = {
   // necessite da autenticação do usuário, então por isso que a parte de autenticar
   // o usuário(signIn) vai estar dentro do contexto para que ela possa ser
   // compartilhada com toda a aplicação
-  signIn(credentials: SignInCredentials): Promise<void>;
+  signIn: (credentials: SignInCredentials) => Promise<void>;
+  signOut: () => void;
   user: User;
   // outras informação que eu vou ter dentro do contexto é se o usuário está ou
   // não autenticado
@@ -34,9 +35,16 @@ type AuthProviderProps = {
 
 export const AuthContext = createContext({} as AuthContextData);
 
-export function SignOut() {
+// A API Broadcast Channel permite a comunicação básica entre contextos de 
+// navegação (ou seja, janelas , guias , quadros ou iframes ) e trabalhadores
+// na mesma origem(domínio)
+let authChannel: BroadcastChannel;
+
+export function signOut() {
   destroyCookie(undefined, 'nextauth.token');
   destroyCookie(undefined, 'nextauth.refreshToken');
+
+  authChannel.postMessage('signOut');
 
   Router.push('/');
 };
@@ -46,6 +54,20 @@ export function AuthProvider({ children }: AuthProviderProps) {
   // para eu saber se o usuário está autenticado ou não é só eu ver se existe
   // alguma coisa dentro da variável user
   const isAuthenticated = !! user;
+
+  useEffect(() => {
+    authChannel = new BroadcastChannel('auth');
+
+    authChannel.onmessage = (message) => {
+      switch (message.data) {
+        case 'signOut':
+          signOut();
+          break;
+        default:
+          break;
+      }
+    }
+  }, []);
 
   // toda vez que o usuário acessar a aplicação pela primeira vez(apenas na primeira
   // vez), carregar a informação do estado do usuário(user) novamente
@@ -72,7 +94,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       // so vai cair no catch se acontecer um erro nessa chamada a api, e não for
       // um erro de refreshToken
       .catch(() => {
-        SignOut();
+        signOut();
       })
     };
   }, []);
@@ -131,7 +153,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   };
 
   return (
-    <AuthContext.Provider value={{ signIn, isAuthenticated, user }}>
+    <AuthContext.Provider value={{ signIn, signOut, isAuthenticated, user }}>
       {children}
     </AuthContext.Provider>
   );
