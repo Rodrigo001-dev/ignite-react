@@ -1,8 +1,20 @@
-import { Box, Flex, Button, useDisclosure, Image } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Button,
+  useDisclosure,
+  Image,
+  useBreakpointValue,
+} from '@chakra-ui/react';
 
 import { ModalAddImage } from './Modal/AddImage';
 
 export function Header(): JSX.Element {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
+
   const { onOpen, isOpen, onClose } = useDisclosure();
 
   return (
@@ -16,7 +28,7 @@ export function Header(): JSX.Element {
           px={20}
           py={6}
         >
-          <Image src="logo.svg" h={10} />
+          {isWideVersion && <Image src="logo.svg" h={10} />}
           <Button onClick={() => onOpen()}>Adicionar imagem</Button>
         </Flex>
       </Box>
