@@ -1,4 +1,4 @@
-![gif-upfi]()
+![gif-upfi](https://github.com/Rodrigo001-dev/ignite/blob/main/reactjs/desafios/ignite-challenge-07/.github/upload-image.gif)
 
 ## :page_with_curl: Projeto
 
