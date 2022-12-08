@@ -40,7 +40,7 @@ $ yarn dev
 
 [Desafio 1](https://github.com/Rodrigo001-dev/ignite/tree/main/reactjs/desafios/ignite-challenge-06): Primeiro desafio com o objetivo de criar uma aplicação totalmente responsiva utilizando Chakra-UI
 
-[Desafio 2](): Segundo desafio com o objetivo de fazer um upload de imagens funcionar corretamente utilizando React Query, Chakra-UI e React Hook Form
+[Desafio 2](https://github.com/Rodrigo001-dev/ignite/tree/main/reactjs/desafios/ignite-challenge-07): Segundo desafio com o objetivo de fazer um upload de imagens funcionar corretamente utilizando React Query, Chakra-UI e React Hook Form
 
 ## 💻 Autor
 
