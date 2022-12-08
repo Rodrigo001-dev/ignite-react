@@ -10,7 +10,7 @@
 <a href="https://nextjs.org/" target="_blank"> <img src="https://img.shields.io/badge/Next-black?style=flat-square&logo=next.js&logoColor=white" alt="Next"> </a>
 <a href="https://chakra-ui.com/" target="_blank"> <img src="https://img.shields.io/badge/-ChakraUI-%234ED1C5?style=flat-square&logo=chakraui&logoColor=white" alt="Chakra UI"> </a>
 <a href="https://react-query-v3.tanstack.com/" target="_blank"> <img src="https://img.shields.io/badge/-React%20Query-FF4154?style=flat-square&logo=react%20query&logoColor=white" alt="React Query"> </a>
-<a href="https://react-hook-form.com/" target="_blank"> <img src="https://img.shields.io/badge/-React%20Query-%23EC5990?style=flat-square&logo=reacthookform&logoColor=white" alt="React Hook Form"> </a>
+<a href="https://react-hook-form.com/" target="_blank"> <img src="https://img.shields.io/badge/-React%20Hook%20Form-%23EC5990?style=flat-square&logo=reacthookform&logoColor=white" alt="React Hook Form"> </a>
 
 
 ## :construction_worker: Executando
