@@ -1,9 +1,29 @@
-import Head from 'next/head'
-import { Inter } from '@next/font/google'
+import Head from 'next/head';
+import { Inter } from '@next/font/google';
+import { FormEvent, useState } from 'react';
+import { SearchResults } from '../components/SearchResults';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [search, setSearch] = useState('');
+  const [results, setResults] = useState([]);
+
+  async function handleSearch(event: FormEvent) {
+    event.preventDefault();
+
+    // se ele estiver vazio ele para aqui
+    if (!search.trim()) {
+      return;
+    }
+
+    // o q vem de query
+    const response = await fetch(`http://localhost:3333/products?q=${search}`);
+    const data = await response.json();
+
+    setResults(data);
+  }
+
   return (
     <>
       <Head>
@@ -13,7 +33,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 className={inter.className}>Hello World</h1>
+        <div>
+          <h1 className={inter.className}>Search</h1>
+
+          <form onSubmit={handleSearch}>
+            <input 
+              type="text" 
+              value={search} 
+              onChange={e => setSearch(e.target.value)}
+            />
+
+            <button type="submit">Buscar</button>
+          </form>
+
+          <SearchResults results={results} />
+        </div>
       </main>
     </>
   )
