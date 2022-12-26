@@ -6,10 +6,6 @@
 
 Mas para começar a falar de performance dentro do React precisamos entender os principais momentos onde o react acaba realizando uma nova renderização de um componente.
 
-<LINKEDIN>
-Mas o que é renderização?
-</LINKEDIN>
-
 Renderização é basicamente um fluxo de comparar um componente da sua versão anterior com uma nova versão para então exibir uma nova versão daquele componente em tela, ou seja, recalcular toda a interface de um componente.
 
 As 3 principais formas que temos de um componente renderizar na nossa aplicação são: 
@@ -27,10 +23,6 @@ Hooks(hooks que armazenam informação ex: useState, useContext, useReducer)
 
 Alguns hooks podem acabar causando novas alterações que vai ocasionar uma nova renderização.
 
-<LINKEDIN>
-Mas o que é o fluxo de renderização dentro do React?
-</LINKEDIN>
-
 O fluxo de renderização no react é basicamente um algoritimo.
 
 Quando o react percebe que precisa renderizar de novo um componente ele vai fazer:
@@ -42,15 +34,7 @@ Quando o react percebe que precisa renderizar de novo um componente ele vai faze
 
 3. Se houverem alterações, o React renderiza essa nova versão em tela;
 
-<LINKEDIN>
-Mas como o React verifica se houve alterações entre as duas versões do componente?
-</LINKEDIN>
-
 O react usa um algoritimo que chamamos de Reconciliation(Reconciliação), esse algoritimo é um algoritimo de diffing, ou seja, um algoritimo de calcular a diferença entre duas estruturas.
-
-<LINKEDIN>
-Mas por que o React precisa de um algoritimo de diffing?
-</LINKEDIN>
 
 Imagene que temos uma lista muito grande, agora imagine que algum item dentro dessa lista foi deletado, quando o react for fazer a nova renderização ele vai comparar as duas árvores(DOM), então a árvore de antes que tinha o item é diferente dessa nova árvore que não tem mais o item, se o react não utilizasse um algoritimo de diffing ele simplesmente iria renderizar toda a lista de novo, ou seja, todos os itens da lista precisariam ser recriados no HTML. Com o algoritimo de Reconciliação o react vai definir algumas regras de encontrar componentes que podem ter sido alterados ou podem ter sido removidos da tela e vai alterar somente o necessário para levar os componentes ao estado desejado.
 
