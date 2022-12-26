@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { List, ListRowRenderer } from 'react-virtualized';
 
 import { ProductItem } from "./ProductItem";
 
@@ -14,6 +15,17 @@ interface SearchResultsProps {
 }
 
 export function SearchResults({ totalPrice, results, onAddToWishlist }: SearchResultsProps) {
+  const rowRenderer: ListRowRenderer = ({ index, key, style }) => {
+    return (
+      <div key={key} style={style}>
+        <ProductItem
+          product={results[index]}
+          onAddToWishlist={onAddToWishlist}
+        />
+      </div>
+    );
+  }
+  
   // o useMemo vai memorizar entre as renderizações do componente o totalPrice
   // para que ele não precise ser recalculado toda vez do zero
   // e o useMemo também server para evitar que uma variável ocupe um novo local
@@ -34,7 +46,19 @@ export function SearchResults({ totalPrice, results, onAddToWishlist }: SearchRe
     <div>
       <h2>{totalPrice}</h2>
 
-      {results.map(product => {
+      <List 
+        height={300}
+        rowHeight={30}
+        width={900}
+        // overscanRowCount é o numero de quantos itens que eu quero que a minha
+        // aplicação deixe pré-carregado tanto para cima quanto para baixo, para
+        // que quando a pessao for dar o scroll o item já vai estar ali
+        overscanRowCount={5}
+        rowCount={results.length}
+        rowRenderer={rowRenderer}
+      />
+
+      {/* {results.map(product => {
         return (
           <ProductItem
             key={product.id}
@@ -42,7 +66,7 @@ export function SearchResults({ totalPrice, results, onAddToWishlist }: SearchRe
             onAddToWishlist={onAddToWishlist}
           />
         );
-      })}
+      })} */}
     </div>
   );
 }
