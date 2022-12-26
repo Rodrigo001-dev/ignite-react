@@ -8,9 +8,10 @@ interface SearchResultsProps {
     price: number;
     title: string;
   }>;
+  onAddToWishlist: (id: number) => void;
 }
 
-export function SearchResults({ results }: SearchResultsProps) {
+export function SearchResults({ results, onAddToWishlist }: SearchResultsProps) {
   // o useMemo vai memorizar entre as renderizações do componente o totalPrice
   // para que ele não precise ser recalculado toda vez do zero
   // e o useMemo também server para evitar que uma variável ocupe um novo local
@@ -33,7 +34,11 @@ export function SearchResults({ results }: SearchResultsProps) {
 
       {results.map(product => {
         return (
-          <ProductItem product={product} />
+          <ProductItem
+            key={product.id}
+            product={product}
+            onAddToWishlist={onAddToWishlist}
+          />
         );
       })}
     </div>

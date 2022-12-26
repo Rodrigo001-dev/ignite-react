@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { Inter } from '@next/font/google';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useCallback, useState } from 'react';
 import { SearchResults } from '../components/SearchResults';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -24,6 +24,23 @@ export default function Home() {
     setResults(data);
   }
 
+  // o useCallback tem quase o mesmo funcionamento do useMemo, só que ao invés
+  // de ser um valor(variável), vai ser uma função, ou seja, quando criamos uma
+  // função e essa função vai ser repassada para os componentes filhos da
+  // aplicação é importante que essa função utilize o useCallback, isso vale
+  // também quando estamos criando Contextos
+  // o useCallback é utilizado apenas por uma questão de igualdade referencial,
+  // porque toda vez que o componente Home atualiza, a função addToWishlist é
+  // criada do zero, ou seja, ela ocupa um novo espaço na memória, como essa
+  // fução está sendo passada para o SearchResults, toda vez que eu tiver essa
+  // função recriada na memória(toda vez que o componente renderizar) o 
+  // SearchResults vai perceber que a função(addToWishlist) é diferente porque
+  // ele faz uma verificação de igualdade referencial e com isso vai recriar
+  // o SearchResults do zero
+  const addToWishlist = useCallback(async (id: number) => {
+    console.log(id);
+  }, []);
+
   return (
     <>
       <Head>
@@ -46,7 +63,10 @@ export default function Home() {
             <button type="submit">Buscar</button>
           </form>
 
-          <SearchResults results={results} />
+          <SearchResults
+            results={results}
+            onAddToWishlist={addToWishlist}
+          />
         </div>
       </main>
     </>
