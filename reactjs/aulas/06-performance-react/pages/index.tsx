@@ -37,6 +37,8 @@ export default function Home() {
 
     // aqui eu estou fazendo a formatação dos dados quando eu estou buscando 
     // as informações e não fazer no momento que eu vou exibir as informações
+    // isso vai evitar que eu fique criando um monte de useMemo e vai permitir que
+    // eu tenha o menor custo de processamento
     const products = data.map((product: any) => {
       return {
         id: product.id,
