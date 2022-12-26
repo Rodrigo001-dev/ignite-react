@@ -1,4 +1,4 @@
-![gif-performance-react]()
+![gif-performance-react](https://github.com/Rodrigo001-dev/ignite/blob/main/reactjs/aulas/06-performance-react/.github/performance.gif)
 
 ## :page_with_curl: Projeto
 
