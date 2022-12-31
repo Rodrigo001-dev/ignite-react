@@ -65,6 +65,10 @@ $ yarn
 $ yarn dev
 ```
 
+# :atom_symbol: Desafios
+
+[Desafio](https://github.com/Rodrigo001-dev/ignite/tree/main/reactjs/desafios/ignite-challenge-08): esse desafio tem por objetivo deixar uma aplicação react mais performática
+
 ## 💻 Autor
 
 Feito com 💜 by Rodrigo Rael
