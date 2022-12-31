@@ -2,7 +2,7 @@
 
 ## :page_with_curl: Projeto
 
-> <b>Performance react</b> é a sexta aplicação criada no chapter 4 da trilha React de 2021 da [Rocketseat](https://github.com/Rocketseat), nela o objetivo foi aprender como otimizar um aplicação React aprendendo sobre os ciclos de renderização no react e sobre o algoritimo de Reconciliation.
+> <b>Performance react</b> é a sexta aplicação criada no chapter 5 da trilha React de 2021 da [Rocketseat](https://github.com/Rocketseat), nela o objetivo foi aprender como otimizar um aplicação React aprendendo sobre os ciclos de renderização no react e sobre o algoritimo de Reconciliation.
 
 Mas para começar a falar de performance dentro do React precisamos entender os principais momentos onde o react acaba realizando uma nova renderização de um componente.
 
