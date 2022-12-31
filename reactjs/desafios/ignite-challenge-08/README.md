@@ -1,4 +1,4 @@
-![]()
+![gif challenge](https://github.com/Rodrigo001-dev/ignite/blob/main/reactjs/desafios/ignite-challenge-08/.github/performance.gif)
 
 ## :page_with_curl: Projeto
 
