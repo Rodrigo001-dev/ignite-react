@@ -2,11 +2,6 @@
   max-width: 1120px;
   margin: 0 auto;
   padding: 0 2rem;
-  // eu estou fazendo com que a altura desse elemento de conteudo da minha Home
-  // seja a altura total da tela(100vh) - 5rem porque 5rem é a altura do meu
-  // Header, eu fiz isso porque o contentContainer está centralizado
-  // verticalmente na tela descontando a altura do Header(5rem), eu preciso que
-  // ele fique exatamente a mesma distancia entre o Header e o fim da tela
   height: calc(100vh - 5rem);
 
   display: flex;
@@ -17,8 +12,7 @@
 .hero {
   max-width: 600px;
 
-  // pegando o span que está apenas 1 nível dentro do hero
-  > span {
+  & > span {
     font-size: 1.5rem;
     font-weight: bold;
   }
@@ -28,7 +22,7 @@
     line-height: 4.5rem;
     font-weight: 900;
     margin-top: 2.5rem;
-
+    
     span {
       color: var(--cyan-500);
     }

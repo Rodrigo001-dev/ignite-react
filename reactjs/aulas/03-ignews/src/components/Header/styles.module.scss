@@ -1,11 +1,9 @@
-// estilos específicos do Header
-
 .headerContainer {
   height: 5rem;
   border-bottom: 1px solid var(--gray-800);
 }
 
-.hedaerContent {
+.headerContent {
   max-width: 1120px;
   height: 5rem;
   margin: 0 auto;
@@ -25,33 +23,32 @@
       height: 5rem;
       line-height: 5rem;
       color: var(--gray-300);
-
       transition: color 0.2s;
 
-      // toda âncora que antes dela tem outra âncora
+      &:hover {
+        color: var(--white);
+        transition: color 0.2s;
+      }
+
       & + a {
         margin-left: 2rem;
       }
 
-      &:hover {
-        color: var(--white);
-      }
-
-      // todo o link que está ativo
       &.active {
         color: var(--white);
         font-weight: bold;
       }
 
       &.active::after {
-        content: '';
-        height: 3px;
-        border-radius: 3px 3px 0 0;
-        width: 100%;
         position: absolute;
         bottom: 1px;
         left: 0;
-        background: var(--yellow-500);
+        content: "";
+
+        height: 3px;
+        border-radius: 3px 3px 0 0;
+        width: 100%;
+        background-color: var(--yellow-500);
       }
     }
   }

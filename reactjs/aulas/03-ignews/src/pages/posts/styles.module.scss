@@ -8,11 +8,11 @@
   max-width: 720px;
   margin: 5rem auto 0;
 
-  a {
+  div {
     display: block;
+    cursor: pointer;
 
-    // cada post(a) que vier precedido por outro posts(a)
-    & + a {
+    & + div {
       margin-top: 2rem;
       padding-top: 2rem;
       border-top: 1px solid var(--gray-700);
@@ -30,7 +30,6 @@
       font-size: 1.5rem;
       margin-top: 1rem;
       line-height: 2rem;
-
       transition: color 0.2s;
     }
 
@@ -42,6 +41,7 @@
 
     &:hover strong {
       color: var(--yellow-500);
+      transition: color 0.2s;
     }
   }
 }

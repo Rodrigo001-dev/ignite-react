@@ -1,35 +1,37 @@
 {
-  "name": "03-ignews",
+  "name": "ignews",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
-    "@prismicio/client": "^6.7.1",
-    "@stripe/stripe-js": "^1.38.1",
-    "axios": "^1.1.2",
-    "faunadb": "^4.7.0",
-    "next": "12.3.1",
-    "next-auth": "^4.12.3",
-    "prismic-dom": "^2.2.7",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-icons": "^4.4.0",
-    "react-toastify": "^9.0.8",
-    "stripe": "^10.12.0"
+    "@prismicio/client": "^4.0.0",
+    "@stripe/stripe-js": "^1.13.2",
+    "axios": "^0.21.1",
+    "faunadb": "^4.1.3",
+    "next": "10.0.9",
+    "next-auth": "^3.13.3",
+    "prismic-dom": "^2.2.5",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-icons": "^4.2.0",
+    "sass": "^1.32.8",
+    "stripe": "^8.139.0"
   },
   "devDependencies": {
-    "@types/next-auth": "^3.15.0",
-    "@types/node": "^18.8.0",
+    "@testing-library/dom": "^8.19.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@types/next-auth": "^3.7.2",
+    "@types/node": "^14.14.35",
     "@types/prismic-dom": "^2.1.1",
-    "@types/react": "^18.0.21",
-    "eslint": "8.24.0",
-    "eslint-config-next": "12.3.1",
-    "sass": "^1.55.0",
-    "typescript": "^4.8.4"
+    "@types/react": "^17.0.3",
+    "babel-jest": "^29.3.1",
+    "jest": "^29.3.1",
+    "jest-dom": "^4.0.0",
+    "typescript": "^4.2.3"
   }
 }

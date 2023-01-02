@@ -1,50 +1,29 @@
-import { useSession, signIn } from 'next-auth/react';
-import { useRouter } from 'next/router';
-
-import { toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
-
+import { useSession, signIn } from 'next-auth/client';
+import { useRouter } from 'next/dist/client/router';
+import { redirect } from 'next/dist/next-server/server/api-utils';
 import { api } from '../../services/api';
 import { getStripeJs } from '../../services/stripe-js';
 
 import styles from './styles.module.scss';
-
 interface SubscribeButtonProps {
   priceId: string;
-};
-
-// exite 3 lugares dentro do Next que podemos fazer uma operação que precise de
-// segurança, uma operação que pode ser usada variaveis de ambiente secretas
-// os 3 lugares são
-// getServerSideProps (SSR)
-// getStaticProps (SSG)
-// API routes
+}
 
 export function SubscribeButton({ priceId }: SubscribeButtonProps) {
-  const { data: session } = useSession();
+  const [session] = useSession();
   const router = useRouter();
 
   async function handleSubscribe() {
-    // se não existir uma sessão do usuário, se o usuário não estiver logado
     if (!session) {
-      // eu vou redirecionar ele para a autenticação com o github
       signIn('github');
-      toast.success("Logado com Sucesso!", {
-        position: toast.POSITION.TOP_RIGHT,
-        theme: "dark"
-      });
-      // dando o return para o código parar de ser executado por aqui
       return;
     }
 
-    // se o usuário já tem uma inscrição ativa
     if (session.activeSubscription) {
-      // eu vou rediredionar ele para a pagina de posts
       router.push('/posts');
       return;
     }
 
-    // se o usuário está com uma sessão ativa, se ele está logado
     try {
       const response = await api.post('/subscribe');
 
@@ -53,15 +32,11 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
       const stripe = await getStripeJs();
 
       await stripe.redirectToCheckout({ sessionId });
-    } catch (error) {
-      toast.error('Algo deu errado!', {
-        position: toast.POSITION.TOP_RIGHT,
-        theme: "dark"
-      });
-      console.log(error.message);
+    } catch (err) {
+      alert(err.message);
     }
-  };
-  
+  }
+
   return (
     <button
       type="button"
@@ -70,5 +45,5 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
     >
       Subscribe now
     </button>
-  );
-};
+  )
+}

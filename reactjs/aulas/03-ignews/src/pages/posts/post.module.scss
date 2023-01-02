@@ -19,35 +19,30 @@
     color: var(--gray-300);
     margin-top: 1.5rem;
   }
+}
 
-  .postContent {
-    margin-top: 2rem;
-    line-height: 2rem;
-    font-size: 1.125rem;
-    color: var(--gray-100);
+.postContent {
+  margin-top: 2rem;
+  line-height: 2rem;
+  font-size: 1.125rem;
+  color: var(--gray-100);
 
-    p, ul {
-      margin: 1.5rem 0;
+  p, ul {
+    margin: 1.5rem 0;
+  }
+
+  ul {
+    padding-left: 1.5rem;
+
+    li {
+      margin: 0.5rem 0;
     }
+  }
 
-    ul {
-      padding-left: 1.5rem;
-
-      li {
-        margin: 0.5rem 0;
-      }
-    }
-
-
-    // se essa div do postContent ela for tambem uma previewContent
-    &.previewContent {
-      background: linear-gradient(var(--gray-100), transparent);
-      // background-clip vai fazer com que o background que foi aplicado se
-      // comporte como o background do texto
-      background-clip: text;
-      // esse webkit é recomendado quando aplicamos o linear-gradient no texto
-      -webkit-text-fill-color: transparent;
-    }
+  &.previewContent {
+    background: linear-gradient(var(--gray-100), transparent);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
 
@@ -63,9 +58,10 @@
   a {
     color: var(--yellow-500);
     margin-left: 0.5rem;
-
+    
     &:hover {
       text-decoration: underline;
     }
   }
+
 }
