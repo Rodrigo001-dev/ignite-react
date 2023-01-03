@@ -1,31 +1,27 @@
-import { useSession, signIn } from 'next-auth/client';
-import { useRouter } from 'next/dist/client/router';
-import { redirect } from 'next/dist/next-server/server/api-utils';
-import { api } from '../../services/api';
-import { getStripeJs } from '../../services/stripe-js';
+import { useSession, signIn } from "next-auth/client";
+import { useRouter } from "next/dist/client/router";
+import { api } from "../../services/api";
+import { getStripeJs } from "../../services/stripe-js";
 
-import styles from './styles.module.scss';
-interface SubscribeButtonProps {
-  priceId: string;
-}
+import styles from "./styles.module.scss";
 
-export function SubscribeButton({ priceId }: SubscribeButtonProps) {
+export function SubscribeButton() {
   const [session] = useSession();
   const router = useRouter();
 
   async function handleSubscribe() {
     if (!session) {
-      signIn('github');
+      signIn("github");
       return;
     }
 
     if (session.activeSubscription) {
-      router.push('/posts');
+      router.push("/posts");
       return;
     }
 
     try {
-      const response = await api.post('/subscribe');
+      const response = await api.post("/subscribe");
 
       const { sessionId } = response.data;
 
@@ -45,5 +41,5 @@ export function SubscribeButton({ priceId }: SubscribeButtonProps) {
     >
       Subscribe now
     </button>
-  )
+  );
 }
