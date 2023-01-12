@@ -1,59 +1,79 @@
 import { render, screen } from "@testing-library/react";
+import { getSession } from "next-auth/client";
 
-import Post, { getStaticProps } from "../../pages/posts";
+import Post, { getServerSideProps } from "../../pages/posts/[slug]";
 import { getPrismicClient } from "../../services/prismic";
 
-const posts = [
-  {
-    slug: "my-new-post",
-    title: "My new Post",
-    excerpt: "Post excerpt",
-    updatedAt: "10 de Abril",
-  },
-];
+const post = {
+  slug: "my-new-post",
+  title: "My new Post",
+  content: "<p>Post excerpt</p>",
+  updatedAt: "10 de Abril",
+};
 
+jest.mock("next-auth/client");
 jest.mock("../../services/prismic");
 
-describe("Home page", () => {
+describe("Post page", () => {
   it("renders correctly", () => {
-    render(<Post posts={posts} />);
+    render(<Post post={post} />);
 
     expect(screen.getByText("My New Post")).toBeInTheDocument();
+    expect(screen.getByText("Post excerpt")).toBeInTheDocument();
   });
 
-  it("loads initial data", async () => {
-    const getPrismicClientMocked = jest.mocked(getPrismicClient);
+  it("redirects user if subscription is found", async () => {
+    const getSessionMocked = jest.mocked(getSession);
 
-    getPrismicClientMocked.mockReturnValueOnce({
-      query: jest.fn().mockResolvedValueOnce({
-        results: [
-          {
-            uid: "my-new-post",
-            data: {
-              title: [{ type: "heading", text: "My new post" }],
-              content: [{ type: "paragraph", text: "Post excerpt" }],
-            },
-            last_public_date: "04-01-2021",
-          },
-        ],
-      }),
+    getSessionMocked.mockResolveValueOnce({
+      activeSubscription: null,
     } as any);
 
-    const response = await getStaticProps({});
+    const response = await getServerSideProps({
+      params: { slug: "my-new-post" },
+    } as any);
 
     console.log({ response });
 
     expect(response).toEqual(
       expect.objectContaining({
+        redirect: expect.objectContaining({
+          destination: "/",
+        }),
+      })
+    );
+  });
+
+  it("loads initial data", async () => {
+    const getSessionMocked = jest.mocked(getSession);
+    const getPrismicClientMocked = jest.mocked(getPrismicClient);
+
+    getPrismicClientMocked.mockReturnValueOnce({
+      getByUID: jest.fn().mockResolvedValueOnce({
+        data: {
+          title: [{ type: "heading", text: "My new post" }],
+          content: [{ type: "paragraph", text: "Post content" }],
+        },
+        last_public_date: "04-01-2021",
+      }),
+    } as any);
+
+    getSessionMocked.mockResolveValueOnce({
+      activeSubscription: "fake-active-subscription",
+    } as any);
+
+    const response = await getServerSideProps({
+      params: { slug: "my-new-post" },
+    } as any);
+
+    expect(response).toEqual(
+      expect.objectContaining({
         props: {
-          posts: [
-            {
-              slug: "my-new-post",
-              title: "My new post",
-              excerpt: "Post excerpt",
-              updateAt: "01 de abril de 2021",
-            },
-          ],
+          post: {
+            slug: "my-new-post",
+            title: "My new post",
+            content: "<p>Post content</p>",
+          },
         },
       })
     );
