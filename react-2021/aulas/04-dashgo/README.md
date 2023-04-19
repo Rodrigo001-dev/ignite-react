@@ -1,4 +1,4 @@
-![gif-dashgo](https://github.com/Rodrigo001-dev/ignite/blob/main/reactjs/aulas/04-dashgo/.github/dashgo-gif.gif)
+![gif-dashgo](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2021/aulas/04-dashgo/.github/dashgo-gif.gif)
 
 ## :page_with_curl: Projeto
 
