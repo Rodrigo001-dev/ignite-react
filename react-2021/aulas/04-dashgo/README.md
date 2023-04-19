@@ -28,7 +28,7 @@ $ cd reactjs/aulas/04-dashgo
 ```
 
 ```bash
-# Baixe as dependendências
+# Baixe as dependências
 $ yarn
 ```
 
