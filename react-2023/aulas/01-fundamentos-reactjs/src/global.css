@@ -1,0 +1,40 @@
+:root {
+  --white: #fff;
+  --gray-100: #e1e1e6;
+  --gray-300: #c4c4cc;
+  --gray-400: #8d8d99;
+  --gray-600: #323238;
+  --gray-700: #29292e;
+  --gray-800: #202024;
+  --gray-900: #121214;
+
+  --green-500: #00875f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  /* 
+    o border-box faz com que o padding margin e border do elemento nunca aumentem 
+    a sua largura e altura e sim espremam o elemento para dentro
+  */
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--gray-900);
+  color: var(--gray-300);
+  -webkit-font-smoothing: antialiased; /* vai fazer as fontes ficarem mais detalhadas */
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  /* 
+    1rem === uma(1) unidade relativa do tamanho de fonte padrão do HTML que é 16px 
+  */
+  font-size: 1rem;
+}
