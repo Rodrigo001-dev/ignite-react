@@ -1,4 +1,4 @@
-![gif-nextauth](https://github.com/Rodrigo001-dev/ignite/blob/main/reactjs/aulas/05-nextauth/.github/nextauth.gif)
+![gif-nextauth](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2021/aulas/05-nextauth/.github/nextauth.gif)
 
 ## :page_with_curl: Projeto
 
