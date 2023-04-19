@@ -27,7 +27,7 @@ $ cd reactjs/aulas/03-ignews
 ```
 
 ```bash
-# Baixe as dependendências
+# Baixe as dependências
 $ yarn
 ```
 
