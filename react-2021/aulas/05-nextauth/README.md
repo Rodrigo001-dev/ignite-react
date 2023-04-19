@@ -22,7 +22,7 @@ $ cd reactjs/aulas/05-nextauth
 ```
 
 ```bash
-# Baixe as dependendências
+# Baixe as dependências
 $ yarn
 ```
 
