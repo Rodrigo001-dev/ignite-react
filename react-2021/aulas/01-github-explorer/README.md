@@ -24,7 +24,7 @@ $ cd reactjs/aulas/01-github-explorer
 ```
 
 ```bash
-# Baixe as dependendências
+# Baixe as dependências
 $ yarn
 ```
 
