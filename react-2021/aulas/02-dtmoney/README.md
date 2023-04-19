@@ -24,7 +24,7 @@ $ cd reactjs/aulas/02-dtmoney
 ```
 
 ```bash
-# Baixe as dependendências
+# Baixe as dependências
 $ yarn
 ```
 
