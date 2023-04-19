@@ -1,4 +1,4 @@
-![gif-worldtrip](https://github.com/Rodrigo001-dev/ignite/blob/main/reactjs/desafios/ignite-challenge-06/.github/worldtrip.gif)
+![gif-worldtrip](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2021/desafios/ignite-challenge-06/.github/worldtrip.gif)
 
 ## :page_with_curl: Projeto
 
@@ -14,16 +14,16 @@
 
 ```bash
 # Clone o Repositório
-$ git@github.com:Rodrigo001-dev/ignite.git
+$ git@github.com:Rodrigo001-dev/ignite-react.git
 ```
 
 ```bash
 # Acesse a pasta do projeto
-$ cd reactjs/desafios/ignite-challenge-06
+$ cd react-2021/desafios/ignite-challenge-06
 ```
 
 ```bash
-# Baixe as dependendências
+# Baixe as dependências
 $ yarn
 ```
 
