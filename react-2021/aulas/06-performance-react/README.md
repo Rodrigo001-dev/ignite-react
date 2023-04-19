@@ -56,7 +56,7 @@ $ cd reactjs/aulas/06-performance-react
 ```
 
 ```bash
-# Baixe as dependendências
+# Baixe as dependências
 $ yarn
 ```
 
