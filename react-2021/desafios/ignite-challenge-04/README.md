@@ -1,4 +1,4 @@
-![Gif challenge](https://github.com/Rodrigo001-dev/ignite/blob/main/reactjs/desafios/ignite-challenge-04/.github/challange.gif)
+![Gif challenge](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2021/desafios/ignite-challenge-04/.github/challange.gif)
 
 ## :page_with_curl: Projeto
 
@@ -23,7 +23,7 @@ $ cd reactjs/desafios/ignite-challenge-04
 ```
 
 ```bash
-# Baixe as dependendências
+# Baixe as dependências
 $ yarn
 ```
 
