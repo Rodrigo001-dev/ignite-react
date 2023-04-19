@@ -1,4 +1,4 @@
-![gif challenge](https://github.com/Rodrigo001-dev/ignite/blob/main/reactjs/desafios/ignite-challenge-08/.github/performance.gif)
+![gif challenge](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2021/desafios/ignite-challenge-08/.github/performance.gif)
 
 ## :page_with_curl: Projeto
 
@@ -18,11 +18,11 @@ $ git@github.com:Rodrigo001-dev/ignite.git
 
 ```bash
 # Acesse a pasta do projeto
-$ cd reactjs/desafios/ignite-challenge-08
+$ cd react-2021/desafios/ignite-challenge-08
 ```
 
 ```bash
-# Baixe as dependendências
+# Baixe as dependências
 $ yarn
 ```
 
