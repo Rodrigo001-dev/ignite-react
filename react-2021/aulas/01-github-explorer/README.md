@@ -15,12 +15,12 @@
 
 ```bash
 # Clone o Repositório
-$ git@github.com:Rodrigo001-dev/ignite.git
+$ git@github.com:Rodrigo001-dev/ignite-react.git
 ```
 
 ```bash
 # Acesse a pasta do projeto
-$ cd reactjs/aulas/01-github-explorer
+$ cd react-2021/aulas/01-github-explorer
 ```
 
 ```bash
@@ -35,9 +35,9 @@ $ yarn dev
 
 # :atom_symbol: Desafios
 
-[Desafio 1](https://github.com/Rodrigo001-dev/ignite/tree/main/reactjs/desafios/ignite-challenge-01): desafio relacionado aos conceitos aprendidos na aplicação.
+[Desafio 1](https://github.com/Rodrigo001-dev/ignite/tree/main/react-2021/desafios/ignite-challenge-01): desafio relacionado aos conceitos aprendidos na aplicação.
 
-[Desafio 2](https://github.com/Rodrigo001-dev/ignite/tree/main/reactjs/desafios/ignite-challenge-02): desafio voltado para aprender como realizar a separação por componentes no React.
+[Desafio 2](https://github.com/Rodrigo001-dev/ignite/tree/main/react-2021/desafios/ignite-challenge-02): desafio voltado para aprender como realizar a separação por componentes no React.
 
 ## 💻 Autor
 

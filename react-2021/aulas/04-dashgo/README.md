@@ -6,7 +6,6 @@
 
 Nessa aplicação utilizamos Next com o Chakra-UI, o Chakra não nos entrega uma convenção sobre o layout, ele vem com elementos muitos secos para sair utilizando, é possível construir qualquer layout utilizando Chakra, não é como o material-UI que é necessário seguir uma convenção de layout, o Chakra trás componentes muito limpos em que nós definimos a estilização no formato em que preferirmos. Logo depois de construir a interface totalmente responsiva utilizamos o react-query para realizar o data-fething, o React Query é um server-state library, ou seja, ele controla o estado da comunicação do frontend com o servidor.
 
-
 ## 🚀 Tecnologias/Bibliotecas utilizadas
 
 <a href="https://www.typescriptlang.org/" target="_blank"> <img src="https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white" alt="TypeScript"> </a>
@@ -19,12 +18,12 @@ Nessa aplicação utilizamos Next com o Chakra-UI, o Chakra não nos entrega uma
 
 ```bash
 # Clone o Repositório
-$ git@github.com:Rodrigo001-dev/ignite.git
+$ git@github.com:Rodrigo001-dev/ignite-react.git
 ```
 
 ```bash
 # Acesse a pasta do projeto
-$ cd reactjs/aulas/04-dashgo
+$ cd react-2021/aulas/04-dashgo
 ```
 
 ```bash
@@ -36,11 +35,12 @@ $ yarn
 # Execute
 $ yarn dev
 ```
+
 ## :atom_symbol: Desafios
 
-[Desafio 1](https://github.com/Rodrigo001-dev/ignite/tree/main/reactjs/desafios/ignite-challenge-06): Primeiro desafio com o objetivo de criar uma aplicação totalmente responsiva utilizando Chakra-UI
+[Desafio 1](https://github.com/Rodrigo001-dev/ignite/tree/main/react-2021/desafios/ignite-challenge-06): Primeiro desafio com o objetivo de criar uma aplicação totalmente responsiva utilizando Chakra-UI
 
-[Desafio 2](https://github.com/Rodrigo001-dev/ignite/tree/main/reactjs/desafios/ignite-challenge-07): Segundo desafio com o objetivo de fazer um upload de imagens funcionar corretamente utilizando React Query, Chakra-UI e React Hook Form
+[Desafio 2](https://github.com/Rodrigo001-dev/ignite/tree/main/react-2021/desafios/ignite-challenge-07): Segundo desafio com o objetivo de fazer um upload de imagens funcionar corretamente utilizando React Query, Chakra-UI e React Hook Form
 
 ## 💻 Autor
 

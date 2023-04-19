@@ -8,7 +8,7 @@ Mas para começar a falar de performance dentro do React precisamos entender os 
 
 Renderização é basicamente um fluxo de comparar um componente da sua versão anterior com uma nova versão para então exibir uma nova versão daquele componente em tela, ou seja, recalcular toda a interface de um componente.
 
-As 3 principais formas que temos de um componente renderizar na nossa aplicação são: 
+As 3 principais formas que temos de um componente renderizar na nossa aplicação são:
 
 Pai para Filho
 
@@ -47,12 +47,12 @@ Imagene que temos uma lista muito grande, agora imagine que algum item dentro de
 
 ```bash
 # Clone o Repositório
-$ git@github.com:Rodrigo001-dev/ignite.git
+$ git@github.com:Rodrigo001-dev/ignite-react.git
 ```
 
 ```bash
 # Acesse a pasta do projeto
-$ cd reactjs/aulas/06-performance-react
+$ cd react-2021/aulas/06-performance-react
 ```
 
 ```bash
@@ -67,7 +67,7 @@ $ yarn dev
 
 # :atom_symbol: Desafios
 
-[Desafio](https://github.com/Rodrigo001-dev/ignite/tree/main/reactjs/desafios/ignite-challenge-08): esse desafio tem por objetivo deixar uma aplicação react mais performática
+[Desafio](https://github.com/Rodrigo001-dev/ignite/tree/main/react-2021/desafios/ignite-challenge-08): esse desafio tem por objetivo deixar uma aplicação react mais performática
 
 ## 💻 Autor
 

@@ -14,12 +14,12 @@
 
 ```bash
 # Clone o Repositório
-$ git@github.com:Rodrigo001-dev/ignite.git
+$ git@github.com:Rodrigo001-dev/ignite-react.git
 ```
 
 ```bash
 # Acesse a pasta do projeto
-$ cd reactjs/desafios/ignite-challenge-03
+$ cd react-2021/desafios/ignite-challenge-03
 ```
 
 ```bash

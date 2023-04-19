@@ -18,12 +18,12 @@ O Next surgiu principalmente por causa de SSR(Server-Side-Rendering) mas nessa a
 
 ```bash
 # Clone o Repositório
-$ git@github.com:Rodrigo001-dev/ignite.git
+$ git@github.com:Rodrigo001-dev/ignite-react.git
 ```
 
 ```bash
 # Acesse a pasta do projeto
-$ cd reactjs/aulas/03-ignews
+$ cd react-2021/aulas/03-ignews
 ```
 
 ```bash
@@ -38,7 +38,7 @@ $ yarn dev
 
 # :atom_symbol: Desafios
 
-[Desafio](https://github.com/Rodrigo001-dev/ignite/tree/main/reactjs/desafios/ignite-challenge-05): o desafio tem por objetivo criar um blog do total zero utiizando Next e o Prismic
+[Desafio](https://github.com/Rodrigo001-dev/ignite/tree/main/react-2021/desafios/ignite-challenge-05): o desafio tem por objetivo criar um blog do total zero utiizando Next e o Prismic
 
 ## 💻 Autor
 
