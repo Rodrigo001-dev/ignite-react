@@ -1,4 +1,4 @@
-![to-do-image](https://github.com/Rodrigo001-dev/ignite/blob/main/reactjs/desafios/ignite-challenge-01/.github/to-do.png)
+![to-do-image](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2021/desafios/ignite-challenge-01/.github/to-do.png)
 
 ## :page_with_curl: Projeto
 
@@ -24,7 +24,7 @@ $ cd reactjs/desafios/ignite-challenge-01
 ```
 
 ```bash
-# Baixe as dependendências
+# Baixe as dependências
 $ yarn
 ```
 
