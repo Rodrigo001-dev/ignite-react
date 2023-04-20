@@ -8,3 +8,18 @@
   gap: 2rem;
   align-items: flex-start;
 }
+
+@media (max-width: 768px) {
+  html {
+    /* 
+      quando utilizamos rem que é uma uniade relativa com base no tamanho da
+      fonte que o usuário escolhe no dispositivo, tudo onde voi utilizando rem
+      vai diminuir com base no tamanho da fonte
+    */
+    font-size: 87.5%;
+  }
+
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
+}
