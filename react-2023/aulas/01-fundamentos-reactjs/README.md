@@ -1,6 +1,6 @@
 ## :page_with_curl: Projeto
 
-[Ignite Feed gif](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2023/aulas/01-fundamentos-reactjs/.github/image/ignite-feed.gif)
+![Ignite Feed gif](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2023/aulas/01-fundamentos-reactjs/.github/image/ignite-feed.gif)
 
 > <b>Ignite Feed</b> é a primeira aplicação criada na trilha React de 2023 da [Rocketseat](https://github.com/Rocketseat), nela o objetivo foi aprender os fundamentos do react.
 
