@@ -1,0 +1,53 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.list div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--gray-500);
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.list div input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-right: 1.125rem;
+  border-radius: 50%;
+  border: 2px solid var(--blue-500);
+  cursor: pointer;
+  outline: none;
+  position: relative;
+}
+
+.list div input[type="checkbox"]:checked {
+  position: relative;
+  background-color: var(--purple-600);
+}
+
+.list div input[type="checkbox"]:checked + span {
+  text-decoration: line-through;
+  color: var(--gray-300);
+}
+
+.list div span {
+  font-size: 0.875rem;
+  color: var(--gray-100);
+  line-height: 140%;
+}
+
+.list div svg {
+  margin-left: 1.125rem;
+  color: var(--gray-300);
+  transition: color 0.3s;
+}
+
+.list div svg:hover {
+  color: var(--red-500);
+  cursor: pointer;
+}

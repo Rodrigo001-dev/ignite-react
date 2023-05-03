@@ -1,0 +1,29 @@
+.createTodo {
+  display: flex;
+}
+
+.createTodo input {
+  width: 39.875rem;
+  padding: 1rem;
+  background: var(--gray-500);
+  color: var(--gray-300);
+  border-radius: 8px;
+  margin-right: 8px;
+}
+
+.createTodo button {
+  background: var(--blue-600);
+  color: var(--gray-100);
+  padding: 1rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.createTodo button:hover {
+  background: var(--blue-500);
+  cursor: pointer;
+}
