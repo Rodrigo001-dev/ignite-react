@@ -1,4 +1,4 @@
-![to-do-image]()
+![to-do-image](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2023/desafios/ignite-challenge-01/.github/images/todo-gif.gif)
 
 ## :page_with_curl: Projeto
 
