@@ -1,9 +1,25 @@
-import { InfoItemContainer } from "./styles";
+import { ReactNode } from "react";
 
-export function InfoItem() {
+import { ChildrenContainer, InfoItemContainer } from "./styles";
+
+interface InfoItemProps {
+  children: ReactNode;
+  description: string;
+  backgroundIconColor: "purple" | "textBase" | "yellow" | "yellowDark";
+}
+
+export function InfoItem({
+  children,
+  description,
+  backgroundIconColor,
+}: InfoItemProps) {
   return (
     <InfoItemContainer>
-      <h2>InfoItem</h2>
+      <ChildrenContainer backgroundColor={backgroundIconColor}>
+        {children}
+      </ChildrenContainer>
+
+      <span>{description}</span>
     </InfoItemContainer>
   );
 }

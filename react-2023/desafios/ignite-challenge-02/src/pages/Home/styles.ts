@@ -29,3 +29,12 @@ export const SubTitle = styled.span`
   color ${(props) => props.theme["base-subtitle"]}
   font-family: 'Roboto', sans-serif;
 `;
+
+export const Descriptions = styled.div`
+  width: 35.5rem;
+  display: flex;
+
+  margin-top: 3.75rem;
+
+  gap: 2.5rem;
+`;
