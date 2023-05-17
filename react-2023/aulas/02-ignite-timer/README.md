@@ -35,7 +35,7 @@ $ npm run dev
 
 # :atom_symbol: Desafios
 
-[Desafio 1]()
+[Desafio - Coffee Delivery](https://github.com/Rodrigo001-dev/ignite-react/tree/main/react-2023/desafios/ignite-challenge-02): O objetivo desse desafio foi criar uma aplicação para gerenciar o contexto de carrinho de compras
 
 ## 💻 Autor
 
