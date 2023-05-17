@@ -10,6 +10,7 @@ export function CoffeeList() {
       {Coffees.map((coffee) => (
         <CoffeeItem
           key={coffee.id}
+          id={coffee.id}
           name={coffee.name}
           description={coffee.description}
           image_url={coffee.image_url}

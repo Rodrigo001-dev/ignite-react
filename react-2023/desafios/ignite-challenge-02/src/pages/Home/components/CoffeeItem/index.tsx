@@ -1,6 +1,11 @@
+import { useState } from "react";
 import { ShoppingCart } from "phosphor-react";
 
+import { useCart } from "../../../../hooks/useCart";
+
 import { QuantityInput } from "../../../../components/QuantityInput";
+
+import { formatMoney } from "../../../../utils/formatMoney";
 
 import {
   CardIconButton,
@@ -15,6 +20,7 @@ import {
 } from "./styles";
 
 interface CoffeeItemProps {
+  id: string;
   name: string;
   description: string;
   image_url: string;
@@ -23,12 +29,43 @@ interface CoffeeItemProps {
 }
 
 export function CoffeeItem({
+  id,
   name,
   price,
   image_url,
   description,
   tags,
 }: CoffeeItemProps) {
+  const { addCoffeeToCart } = useCart();
+
+  const [quantity, setQuantity] = useState(1);
+
+  function handleIncrease() {
+    setQuantity((oldQuantity) => oldQuantity + 1);
+  }
+
+  function handleDecrease() {
+    setQuantity((oldQuantity) => oldQuantity - 1);
+  }
+
+  function handleAddToCart() {
+    const coffee = {
+      id,
+      name,
+      price,
+      image_url,
+      description,
+      tags,
+    };
+
+    const coffeeToAdd = {
+      ...coffee,
+      quantity,
+    };
+
+    addCoffeeToCart(coffeeToAdd);
+  }
+
   return (
     <CoffeeContainer>
       <img src={image_url} alt="" />
@@ -44,23 +81,17 @@ export function CoffeeItem({
 
       <PriceAndQuantityContainer>
         <Price>
-          R${" "}
-          <strong>
-            {price.toLocaleString("pt-BR", {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}
-          </strong>
+          R$ <strong>{formatMoney(price)}</strong>
         </Price>
 
         <QuantityContainer>
           <QuantityInput
-            quantity={0}
-            onDecrease={() => {}}
-            onIncrease={() => {}}
+            onIncrease={handleIncrease}
+            onDecrease={handleDecrease}
+            quantity={quantity}
           />
 
-          <CardIconButton>
+          <CardIconButton onClick={handleAddToCart}>
             <ShoppingCart weight="fill" fill="white" size={22} />
           </CardIconButton>
         </QuantityContainer>
