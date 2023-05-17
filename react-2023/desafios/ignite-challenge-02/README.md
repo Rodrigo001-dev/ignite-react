@@ -1,4 +1,4 @@
-![coffee-delivery-image]()
+![coffee-delivery-image](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2023/desafios/ignite-challenge-02/.github/images/coffee-delivery.gif)
 
 ## :page_with_curl: Projeto
 
