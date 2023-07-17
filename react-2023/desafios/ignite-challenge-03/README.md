@@ -1,4 +1,4 @@
-![github-blog-gif]()
+![github-blog-gif](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2023/desafios/ignite-challenge-03/.githhub/images/Github-blog.gif)
 
 ## :page_with_curl: Projeto
 
