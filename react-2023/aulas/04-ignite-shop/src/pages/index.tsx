@@ -1,26 +1,45 @@
+import { MouseEvent, useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
 import Head from 'next/head'
+import Link from 'next/link'
 import { useKeenSlider } from 'keen-slider/react'
 import Stripe from 'stripe'
 
 import { stripe } from '@/lib/stripe'
+import { CartButton } from '@/components/CartButton'
+
+import { useCart } from '../hooks/useCart'
 
 import { HomeContainer, Product } from '../styles/pages/home'
 import 'keen-slider/keen-slider.min.css'
-import Link from 'next/link'
+
+import { Product as IProduct } from '@/contexts/CartContext'
 
 interface HomeProps {
-  products: {
-    id: string
-    name: string
-    imageUrl: string
-    price: string
-  }[]
+  products: IProduct[]
 }
 
 export default function Home({ products }: HomeProps) {
+  const [isLoading, setIsLoading] = useState(true)
+
   const [sliderRef] = useKeenSlider({ slides: { perView: 3, spacing: 48 } })
+
+  const { addToCart, checkIfItemAlreadyExist } = useCart()
+
+  function handleAddToCart(
+    event: MouseEvent<HTMLButtonElement>,
+    product: IProduct,
+  ) {
+    event.preventDefault()
+    addToCart(product)
+  }
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => setIsLoading(false), 2000)
+
+    return () => clearTimeout(timeOut)
+  }, [])
 
   return (
     <>
@@ -40,8 +59,17 @@ export default function Home({ products }: HomeProps) {
                 <Image src={product.imageUrl} alt="" width={520} height={480} />
 
                 <footer>
-                  <strong>{product.name}</strong>
-                  <span>{product.price}</span>
+                  <div>
+                    <strong>{product.name}</strong>
+                    <span>{product.price}</span>
+                  </div>
+
+                  <CartButton
+                    color="green"
+                    size="large"
+                    disabled={checkIfItemAlreadyExist(product.id)}
+                    onClick={(event) => handleAddToCart(event, product)}
+                  />
                 </footer>
               </Product>
             </Link>
@@ -68,6 +96,8 @@ export const getStaticProps: GetStaticProps = async () => {
         style: 'currency',
         currency: 'BRL',
       }).format(price.unit_amount! / 100),
+      numberPrice: price.unit_amount! / 100,
+      defaultPriceId: price.id,
     }
   })
 
