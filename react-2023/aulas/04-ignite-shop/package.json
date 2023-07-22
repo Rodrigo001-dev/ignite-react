@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.4",
     "@stitches/react": "^1.2.8",
     "@types/node": "20.4.4",
     "@types/react": "18.2.15",
@@ -19,6 +20,7 @@
     "eslint-config-next": "13.4.12",
     "keen-slider": "^6.8.6",
     "next": "13.4.12",
+    "phosphor-react": "^1.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "stripe": "^12.14.0",
