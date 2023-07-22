@@ -29,10 +29,6 @@ $ npm i
 $ npm run dev
 ```
 
-# :atom_symbol: Desafios
-
-[Desafio - ]():
-
 ## 💻 Autor
 
 Feito com 💜 by Rodrigo Rael
