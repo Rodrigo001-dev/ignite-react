@@ -1,0 +1,24 @@
+{
+  "name": "@ignite-ui-rodrigo/react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "dev": "tsup src/index.ts --format esm,cjs --dts --watch",
+    "lint": "eslint src/**/*.ts* --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@ignite-ui-rodrigo/tokens": "*",
+    "@ignite-ui-rodrigo/ts-config": "*",
+    "@ignite-ui-rodrigo/eslint-config": "*",
+    "tsup": "^7.1.0",
+    "typescript": "^5.1.6"
+  }
+}
