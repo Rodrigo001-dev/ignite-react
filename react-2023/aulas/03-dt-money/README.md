@@ -33,7 +33,7 @@ $ npm run dev
 
 # :atom_symbol: Desafios
 
-[Desafio - ]():
+[Desafio - Githuyb Blog](https://github.com/Rodrigo001-dev/ignite-react/tree/main/react-2023/desafios/ignite-challenge-03): O objetivo desse desafio foi criar um blog que consome a API do Github
 
 ## 💻 Autor
 
