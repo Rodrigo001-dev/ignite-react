@@ -15,9 +15,12 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@ignite-ui-rodrigo/eslint-config": "*",
     "@ignite-ui-rodrigo/tokens": "*",
     "@ignite-ui-rodrigo/ts-config": "*",
-    "@ignite-ui-rodrigo/eslint-config": "*",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "react": "^18.2.0",
     "tsup": "^7.1.0",
     "typescript": "^5.1.6"
   }
