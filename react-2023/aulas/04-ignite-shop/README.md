@@ -1,6 +1,6 @@
 ## :page_with_curl: Projeto
 
-![Ignite Shop gif]()
+![Ignite Shop gif](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2023/aulas/04-ignite-shop/.github/images/ignite-shop.gif)
 
 > <b>Ignite shop</b> é a quarta aplicação da trilha ReactJS de 2023 do Ignite da [Rocketseat](https://github.com/Rocketseat). Essa é uma aplicação de e-commerce de camisetas, nele o objetivo foi aprender conceitos do Next em conjunto com o Stripe e Stitches.
 
