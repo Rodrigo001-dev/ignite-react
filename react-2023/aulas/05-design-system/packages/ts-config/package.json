@@ -1,5 +1,6 @@
 {
-  "name": "@ignite-ui-rodrigo/ts-config",
-  "private": true,
-  "license": "MIT"
+  "name": "@ignite-ui/ts-config",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true
 }

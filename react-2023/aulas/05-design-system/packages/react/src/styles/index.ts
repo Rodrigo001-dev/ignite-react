@@ -8,7 +8,7 @@ import {
   lineHeights,
   radii,
   space,
-} from '@ignite-ui-rodrigo/tokens'
+} from '@ignite-ui/tokens'
 
 export const {
   styled,
