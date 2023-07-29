@@ -1,6 +1,6 @@
 ## :page_with_curl: Projeto
 
-![Ignite Shop gif](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2023/aulas/04-ignite-shop/.github/images/ignite-shop.gif)
+![Ignite Shop gif](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2023/aulas/05-design-system/.github/images/design-system.gif)
 
 > <b>Design System</b> é a quinta aplicação da trilha ReactJS de 2023 do Ignite da [Rocketseat](https://github.com/Rocketseat). Nessa aplicação o objetivo foi construir um design system utilizando stitches e o storybook para construir componentes que vão ser utilizados no próximo modulo.
 
