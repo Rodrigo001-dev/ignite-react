@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
-import { google } from 'googleapis'
 import dayjs from 'dayjs'
+import { google } from 'googleapis'
 
 import { prisma } from './prisma'
 
@@ -33,9 +33,9 @@ export async function getGoogleOAuthToken(userId: string) {
     const { credentials } = await auth.refreshAccessToken()
     const {
       access_token,
-      refresh_token,
       expiry_date,
       id_token,
+      refresh_token,
       scope,
       token_type,
     } = credentials
@@ -46,9 +46,9 @@ export async function getGoogleOAuthToken(userId: string) {
       },
       data: {
         access_token,
-        refresh_token,
         expires_at: expiry_date ? Math.floor(expiry_date / 1000) : null,
         id_token,
+        refresh_token,
         scope,
         token_type,
       },
@@ -59,7 +59,7 @@ export async function getGoogleOAuthToken(userId: string) {
       refresh_token,
       expiry_date,
     })
-
-    return auth
   }
+
+  return auth
 }

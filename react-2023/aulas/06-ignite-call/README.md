@@ -1,6 +1,6 @@
 ## :page_with_curl: Projeto
 
-![Ignite Call gif]()
+![Ignite Call gif](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2023/aulas/06-ignite-call/.github/images/ignite-call-gif.gif)
 
 > <b>Ignite Call</b> é a sexta aplicação da trilha ReactJS de 2023 do Ignite da [Rocketseat](https://github.com/Rocketseat). Nessa aplicação o objetivo foi construir uma uma aplicação de agendamentos de call com integração com o Google Calendar, e aprendendo bastante sobres queries complexas no banco de dados com o prisma ORM.
 

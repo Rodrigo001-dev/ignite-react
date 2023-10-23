@@ -1,13 +1,12 @@
-/* eslint-disable camelcase */
-import { NextApiRequest, NextApiResponse } from 'next'
-import { z } from 'zod'
 import dayjs from 'dayjs'
 import { google } from 'googleapis'
+import { NextApiRequest, NextApiResponse } from 'next'
+import { z } from 'zod'
 
-import { prisma } from '../../../../lib/prisma'
 import { getGoogleOAuthToken } from '../../../../lib/google'
+import { prisma } from '../../../../lib/prisma'
 
-export default async function handle(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
@@ -18,7 +17,9 @@ export default async function handle(
   const username = String(req.query.username)
 
   const user = await prisma.user.findUnique({
-    where: { username },
+    where: {
+      username,
+    },
   })
 
   if (!user) {
@@ -39,7 +40,9 @@ export default async function handle(
   const schedulingDate = dayjs(date).startOf('hour')
 
   if (schedulingDate.isBefore(new Date())) {
-    return res.status(400).json({ message: 'Date is in the past.' })
+    return res.status(400).json({
+      message: 'Date is in the past.',
+    })
   }
 
   const conflictingScheduling = await prisma.scheduling.findFirst({
@@ -50,9 +53,9 @@ export default async function handle(
   })
 
   if (conflictingScheduling) {
-    return res
-      .status(400)
-      .json({ message: 'There is another scheduling at the same time.' })
+    return res.status(400).json({
+      message: 'There is another scheduling at at the same time.',
+    })
   }
 
   const scheduling = await prisma.scheduling.create({
@@ -87,7 +90,7 @@ export default async function handle(
         createRequest: {
           requestId: scheduling.id,
           conferenceSolutionKey: {
-            type: 'hangoutMeet',
+            type: 'hangoutsMeet',
           },
         },
       },
