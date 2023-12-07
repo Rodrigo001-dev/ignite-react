@@ -33,7 +33,7 @@ $ npm i
 $ npm run dev
 ```
 
-## 💻 Auto
+## 💻 Autor
 
 Feito com 💜 by Rodrigo Rael
 
