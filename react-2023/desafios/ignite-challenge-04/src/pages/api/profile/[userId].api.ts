@@ -46,7 +46,7 @@ export default async function handler(
   
   const categories = profile?.ratings?.flatMap(rating => rating?.book?.categories?.flatMap(category => category?.category?.name))
 
-  const mostReadCategory = categories ? getMostFrequentString(categories) : null;
+  const mostReadCategory = categories && categories.length > 0 ? getMostFrequentString(categories) : null;
 
   const profileData = {
     user: {
