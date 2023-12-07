@@ -1,4 +1,4 @@
-![book-wise-gif](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2023/desafios/ignite-challenge-04/.githhub/images/book-wise.gif)
+![book-wise-gif](https://github.com/Rodrigo001-dev/ignite-react/blob/main/react-2023/desafios/ignite-challenge-04/.github/images/book-wise.gif)
 
 ## :page_with_curl: Projeto
 
